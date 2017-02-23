@@ -3,6 +3,7 @@
 #include "matrix.h"
 
 #define TIME_TO_SHIFT 50
+unsigned char sim_to_shift = 0;
 
 enum { LED_PIN = 13 };
 enum LedState { LED_ON, LED_OFF, LED_BLINK };
@@ -10,8 +11,8 @@ enum LedState { LED_ON, LED_OFF, LED_BLINK };
 LedState led_state;
 
 unsigned char * lc_matrix;
-
-
+//============================================================================================
+//============================================================================================
 void setup() {
   // put your setup code here, to run once:
   set_rgb1_pins_out();
@@ -21,8 +22,6 @@ void setup() {
 
   Timer3.initialize(2500);
   Timer3.attachInterrupt(print_row_matrix);
-
-
 
   led_state = LED_OFF;
   pinMode(LED_PIN, OUTPUT);
@@ -37,7 +36,8 @@ void setup() {
   matrix_set_text(1, "abcdefgh", 8);
   lc_matrix = matrix_get_matrix();
 }
-
+//============================================================================================
+//============================================================================================
 void print_row_matrix(){
   static int time_to_shift = 0;
   
@@ -49,11 +49,20 @@ void print_row_matrix(){
   cur_row &= 7;
 
   if (++time_to_shift >= TIME_TO_SHIFT){
+    
+    if (sim_to_shift){
+      if(! matrix_get_shift(0)){
+        matrix_shift_cycle_left(0, sim_to_shift);
+        sim_to_shift = 0;
+      }
+    }
+      
     matrix_shift_cycle_left(0);
     time_to_shift = 0;
   }
 }
-
+//============================================================================================
+//============================================================================================
 void loop() {
 
   switch (led_state)
@@ -73,7 +82,8 @@ void loop() {
     }
   }
 }
-
+//============================================================================================
+//============================================================================================
 void serialEvent1() {
   Timer3.stop();
   // put your main code here, to run repeatedly:
@@ -83,7 +93,9 @@ void serialEvent1() {
   {
     char command = Serial1.read();
     
-    matrix_append_char(0, command);
+    //matrix_append_char(0, command);
+    
+    sim_to_shift = command;
     matrix_append_char(1, command);
 
     Serial.write(command);
@@ -110,3 +122,6 @@ void serialEvent1() {
   }
   Timer3.start();
 }
+//============================================================================================
+//============================================================================================
+

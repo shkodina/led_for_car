@@ -5,7 +5,8 @@ unsigned char * matrix_get_matrix();
 void matrix_clear();
 void matrix_set_text (char row, char * text, char len);
 void matrix_append_char(char row, char sim);
-void matrix_shift_cycle_left(char row);
+char matrix_shift_cycle_left(char row, unsigned char sim = 0);
+char matrix_get_shift(char row);
 
 void matrix_rotate_fonts();
 
