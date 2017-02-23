@@ -122,31 +122,15 @@ void put_oe_low (){
   digitalWrite(CMDOE, LOW);  
 }
 
-void push_rgb_1_2_data(unsigned char * rgb1, unsigned char * rgb2, unsigned char count){
-  for (unsigned char i = 0; i < count*3; i+=3){
-    for (unsigned char mbit = 0; mbit < 8; mbit++){
-      digitalWrite(PinR1, (( rgb1[i] >> mbit ) & 1 ));  
-      digitalWrite(PinG1, (( rgb1[i+1] >> mbit ) & 1 ));  
-      digitalWrite(PinB1, (( rgb1[i+2] >> mbit ) & 1 ));  
-      digitalWrite(PinR2, (( rgb2[i] >> mbit ) & 1 ));  
-      digitalWrite(PinG2, (( rgb2[i+1] >> mbit ) & 1 ));  
-      digitalWrite(PinB2, (( rgb2[i+2] >> mbit ) & 1 ));  
-      puls_clk();
-    }        
-  }
-}
-
 void push_r_data_by_row(unsigned char * r_matrix, char row){
 
   char r1pos = 0;
   char r2pos = r1pos + MATRIX_COLOMS * MATRIX_BLOCK_SIZE * MATRIX_COUNT;
 
-  for (char i = 0; i < MATRIX_COLOMS * MATRIX_COUNT; i++){
-    for (char mbit = 0; mbit < 8; mbit++){
-      digitalWrite(PinR1, (( r_matrix[r1pos + i * MATRIX_BLOCK_SIZE + row] >> mbit ) & 1 )); 
-      digitalWrite(PinR2, (( r_matrix[r2pos + i * MATRIX_BLOCK_SIZE + row] >> mbit ) & 1 ));
-      puls_clk();
-    }  
+  for (char i = 0; i < MATRIX_COLOMS * MATRIX_COUNT * MATRIX_BLOCK_SIZE; i++){
+    digitalWrite(PinR1, (( r_matrix[r1pos + i] >> row ) & 1 )); 
+    digitalWrite(PinR2, (( r_matrix[r2pos + i] >> row ) & 1 ));
+    puls_clk(); 
   }
 }
 

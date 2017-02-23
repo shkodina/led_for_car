@@ -3,11 +3,6 @@
 #include "matrix.h"
 
 
-//unsigned char rgb1[12] = {0xff,0,0,0,0xff,0,0xff,0xff,0,0,0,0xff};
-//unsigned char rgb2[12] = {0xff,0,0xff,0,0xff,0xff,0xff,0xff,0xff,0b11000000,0b00011000,0b00000011};
-unsigned char rgb1[12] = {0xff,0,0,0,0xff,0,0xff,0xff,0,0,0,0xff};
-unsigned char rgb2[12] = {0xff,0,0xff,0,0xff,0xff,0b10011001,0b10011001,0b10011001,0b11000000,0b00011000,0b00000011};
-
 enum { LED_PIN = 13 };
 enum LedState { LED_ON, LED_OFF, LED_BLINK };
 
@@ -34,6 +29,8 @@ void setup() {
   Serial1.begin(9600);
   Serial.begin(9600);
 
+  matrix_rotate_fonts();
+
   matrix_clear();
   matrix_set_text(0, "12345678", 8);
   matrix_set_text(1, "abcdefgh", 8);
@@ -43,8 +40,6 @@ void setup() {
 void print_row_matrix(){
   static unsigned char cur_row = 0;
    
-  //push_rgb_1_2_data(rgb1, rgb2, 4);
-
   push_r_data_by_row(lc_matrix , cur_row);
   set_row(cur_row++); 
 

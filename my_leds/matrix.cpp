@@ -40,7 +40,24 @@ void matrix_append_char(char row, char sim){
   for (char i = 0; i < MATRIX_COLOMS * MATRIX_COUNT - 1; i++){
     memcpy(&rmatrix[(row_start_index + i) * MATRIX_BLOCK_SIZE], &rmatrix[(row_start_index + i + 1) * MATRIX_BLOCK_SIZE], MATRIX_BLOCK_SIZE);  
   }
+  
   row_start_index = row_start_index + MATRIX_COLOMS * MATRIX_COUNT - 1;
   memcpy(&rmatrix[row_start_index * MATRIX_BLOCK_SIZE], &myfont8x8[sim - MYFONT8X8SHIFT][0], MATRIX_BLOCK_SIZE);  
+}
+
+void matrix_rotate_fonts(){
+  unsigned char rotated[8];
+
+  for (unsigned char i = 0; i < FONT_COUNT; i++){
+    
+    memset(rotated, 0, 8);
+
+    for (char bc = 0; bc < 8; bc++){
+      for (char bits = 0; bits < 8; bits++){
+        rotated[bc] |= ((myfont8x8[i][bits] >> bc) & 1) << bits;        
+      }
+    }
+    memcpy(&myfont8x8[i][0], rotated, 8);  
+  }
 }
 

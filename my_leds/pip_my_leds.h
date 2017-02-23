@@ -13,8 +13,6 @@ void puls_lat();
 void put_oe_high();
 void put_oe_low();
 
-void push_rgb_1_2_data(unsigned char * rgb1, unsigned char * rgb2, unsigned char count);
-
 void push_r_data_by_row(unsigned char * r_matrix, char row);
 
 #endif
