@@ -1,7 +1,7 @@
 #ifndef MY_MATRIX_DEFS_H
 #define MY_MATRIX_DEFS_H
 
-#define MATRIX_COUNT 1
+#define MATRIX_COUNT 2
 
 #define MATRIX_ROWS 2
 #define MATRIX_COLOMS 4

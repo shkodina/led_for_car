@@ -23,7 +23,7 @@ void setup() {
   set_addr_pins_out();
   set_cmd_pins_out();
 
-  Timer3.initialize(2300);
+  Timer3.initialize(2500);
   Timer3.attachInterrupt(print_row_matrix);
 
 
@@ -35,8 +35,8 @@ void setup() {
   Serial.begin(9600);
 
   matrix_clear();
-  matrix_set_text(0, "1234", 4);
-  matrix_set_text(1, "abcd", 4);
+  matrix_set_text(0, "12345678", 8);
+  matrix_set_text(1, "abcdefgh", 8);
   lc_matrix = matrix_get_matrix();
 }
 
@@ -81,6 +81,7 @@ void serialEvent1() {
     char command = Serial1.read();
     
     matrix_append_char(0, command);
+    matrix_append_char(1, command);
 
     Serial.write(command);
     
@@ -89,6 +90,7 @@ void serialEvent1() {
       case '1': led_state = LED_ON; break;
       case '0': led_state = LED_OFF; break;
       case '*': led_state = LED_BLINK; break;
+      case '-': led_state = LED_BLINK; matrix_clear(); break;
       
       default:/*
       {

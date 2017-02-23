@@ -139,9 +139,9 @@ void push_rgb_1_2_data(unsigned char * rgb1, unsigned char * rgb2, unsigned char
 void push_r_data_by_row(unsigned char * r_matrix, char row){
 
   char r1pos = 0;
-  char r2pos = r1pos + MATRIX_COLOMS * MATRIX_BLOCK_SIZE;
+  char r2pos = r1pos + MATRIX_COLOMS * MATRIX_BLOCK_SIZE * MATRIX_COUNT;
 
-  for (char i = 0; i < MATRIX_COLOMS; i++){
+  for (char i = 0; i < MATRIX_COLOMS * MATRIX_COUNT; i++){
     for (char mbit = 0; mbit < 8; mbit++){
       digitalWrite(PinR1, (( r_matrix[r1pos + i * MATRIX_BLOCK_SIZE + row] >> mbit ) & 1 )); 
       digitalWrite(PinR2, (( r_matrix[r2pos + i * MATRIX_BLOCK_SIZE + row] >> mbit ) & 1 ));
