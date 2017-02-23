@@ -61,3 +61,16 @@ void matrix_rotate_fonts(){
   }
 }
 
+void matrix_shift_cycle_left(char row){
+  char row_start_index = row * MATRIX_COLOMS * MATRIX_COUNT;
+
+  char buf = rmatrix[row_start_index];
+
+  char i;
+  for (i = 0; i < MATRIX_COLOMS * MATRIX_COUNT * MATRIX_BLOCK_SIZE - 1; i++){
+    rmatrix[row_start_index + i] = rmatrix[row_start_index + i + 1] ;
+  }
+
+    rmatrix[row_start_index + i] = buf;
+}
+

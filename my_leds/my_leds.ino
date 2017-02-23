@@ -2,6 +2,7 @@
 #include "TimerThree.h"
 #include "matrix.h"
 
+#define TIME_TO_SHIFT 50
 
 enum { LED_PIN = 13 };
 enum LedState { LED_ON, LED_OFF, LED_BLINK };
@@ -38,12 +39,19 @@ void setup() {
 }
 
 void print_row_matrix(){
+  static int time_to_shift = 0;
+  
   static unsigned char cur_row = 0;
    
   push_r_data_by_row(lc_matrix , cur_row);
   set_row(cur_row++); 
 
   cur_row &= 7;
+
+  if (++time_to_shift >= TIME_TO_SHIFT){
+    matrix_shift_cycle_left(0);
+    time_to_shift = 0;
+  }
 }
 
 void loop() {
@@ -71,7 +79,7 @@ void serialEvent1() {
   // put your main code here, to run repeatedly:
   static unsigned char pos = 0;
 
-  if (1)//Serial1.available())
+  if (Serial1.available())
   {
     char command = Serial1.read();
     
