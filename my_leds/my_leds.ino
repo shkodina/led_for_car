@@ -35,8 +35,8 @@ void setup() {
   Serial.begin(9600);
 
   matrix_clear();
-  set_text(0, "1234", 4);
-  set_text(1, "abcd", 4);
+  matrix_set_text(0, "1234", 4);
+  matrix_set_text(1, "abcd", 4);
   lc_matrix = matrix_get_matrix();
 }
 
@@ -80,9 +80,7 @@ void serialEvent1() {
   {
     char command = Serial1.read();
     
-    rgb2[pos++] = command;
-    if (pos == 12)
-      pos = 0;
+    matrix_append_char(0, command);
 
     Serial.write(command);
     
@@ -92,7 +90,7 @@ void serialEvent1() {
       case '0': led_state = LED_OFF; break;
       case '*': led_state = LED_BLINK; break;
       
-      default:
+      default:/*
       {
         for (int i = 0; i < 5; ++i)
         {
@@ -101,7 +99,8 @@ void serialEvent1() {
           digitalWrite(LED_PIN, LOW);
           delay(50);
         }
-      }
+      }*/
+      ;
     }
   }
   Timer3.start();
