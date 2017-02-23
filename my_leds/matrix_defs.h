@@ -1,0 +1,14 @@
+#ifndef MY_MATRIX_DEFS_H
+#define MY_MATRIX_DEFS_H
+
+#define MATRIX_COUNT 1
+
+#define MATRIX_ROWS 2
+#define MATRIX_COLOMS 4
+
+#define MATRIX_BLOCK_SIZE 8
+
+#define MYFONT8X8SHIFT 0x20
+
+
+#endif
