@@ -1,16 +1,26 @@
 #include "pip_my_leds.h"
 #include "TimerThree.h"
 #include "matrix.h"
+#include "matrix_defs.h"
+#include "MatrixString.h"
 
-#define TIME_TO_SHIFT 50
-unsigned char sim_to_shift = 0;
+#define TIMER_INIT_VAL_US 300
+#define TIMER_PRINT_ROW_PERIOD 2
+#define TIMER_SHIFT_PERIOD 200
 
 enum { LED_PIN = 13 };
 enum LedState { LED_ON, LED_OFF, LED_BLINK };
-
 LedState led_state;
 
 unsigned char * lc_matrix;
+MatrixString strings[MATRIX_ROWS];
+
+//============================================================================================
+//============================================================================================
+void init_global_values(){
+
+  lc_matrix = matrix_get_matrix();
+}
 //============================================================================================
 //============================================================================================
 void setup() {
@@ -20,8 +30,10 @@ void setup() {
   set_addr_pins_out();
   set_cmd_pins_out();
 
-  Timer3.initialize(2500);
-  Timer3.attachInterrupt(print_row_matrix);
+  init_global_values();
+  
+  Timer3.initialize(TIMER_INIT_VAL_US);
+  Timer3.attachInterrupt(state_machine);
 
   led_state = LED_OFF;
   pinMode(LED_PIN, OUTPUT);
@@ -29,24 +41,64 @@ void setup() {
   Serial1.begin(9600);
   Serial.begin(9600);
 
-  matrix_rotate_fonts();
 
+  strings[0].reset("Piper is", 8);
+  strings[1].reset("the best", 8);
+  
+
+  matrix_rotate_fonts();
   matrix_clear();
-  matrix_set_text(0, "12345678", 8);
-  matrix_set_text(1, "abcdefgh", 8);
-  lc_matrix = matrix_get_matrix();
+  matrix_set_text(0, strings[0].str, 8);
+  matrix_set_text(1, strings[1].str, 8);
+  
 }
 //============================================================================================
 //============================================================================================
+void print_row(){
+  static unsigned char cur_row = 0;  
+  push_r_data_by_row(lc_matrix , cur_row);
+  set_row(cur_row++); 
+  cur_row &= 7;    
+}
+//=====================================================================================
+//=====================================================================================
+void state_machine(){
+  static unsigned long tic_print_row = 0; 
+  static unsigned long tic_shift = 0;  
+
+  if (tic_print_row++ == TIMER_PRINT_ROW_PERIOD){
+    tic_print_row = 0;
+    print_row();  
+  }
+  
+  if (tic_shift++ == TIMER_SHIFT_PERIOD){
+    tic_shift = 0;
+
+
+    
+    for (char i = 0; i < MATRIX_ROWS; i++){
+      if (strings[i].need_scroll){
+        if(! matrix_get_shift(i)){
+          if ( strings[i].len <= MATRIX_COUNT * MATRIX_COLOMS){
+            matrix_shift_cycle_left(i);    
+          }else{
+            matrix_shift_cycle_left(i, strings[i].get_next_sim_for_scroll());
+          }
+        }else{
+          matrix_shift_cycle_left(i);    
+        }
+                
+      }
+    }
+  }
+}
+//=====================================================================================
+//=====================================================================================
+/*
 void print_row_matrix(){
   static int time_to_shift = 0;
   
-  static unsigned char cur_row = 0;
-   
-  push_r_data_by_row(lc_matrix , cur_row);
-  set_row(cur_row++); 
 
-  cur_row &= 7;
 
   if (++time_to_shift >= TIME_TO_SHIFT){
     
@@ -61,6 +113,7 @@ void print_row_matrix(){
     time_to_shift = 0;
   }
 }
+*/
 //============================================================================================
 //============================================================================================
 void loop() {
@@ -84,26 +137,23 @@ void loop() {
 }
 //============================================================================================
 //============================================================================================
+enum CMDpoints {CMD_WAIT, CMD_INIT, CMD_GATHERING, CMD_CHECKING};
+
 void serialEvent1() {
   Timer3.stop();
   // put your main code here, to run repeatedly:
-  static unsigned char pos = 0;
+  static unsigned char state = CMD_WAIT;
 
-  if (Serial1.available())
+  while (Serial1.available())
   {
-    char command = Serial1.read();
+    char sim = Serial1.read();
+ 
+    Serial.write(sim);
     
-    //matrix_append_char(0, command);
-    
-    sim_to_shift = command;
-    matrix_append_char(1, command);
-
-    Serial.write(command);
-    
-    switch (command)
+    switch (sim)
     {
-      case '1': led_state = LED_ON; break;
-      case '0': led_state = LED_OFF; break;
+      case '1': led_state = LED_ON; strings[1].need_scroll = !strings[1].need_scroll;  break;
+      case '0': led_state = LED_OFF; strings[0].need_scroll = !strings[0].need_scroll; break;
       case '*': led_state = LED_BLINK; break;
       case '-': led_state = LED_BLINK; matrix_clear(); break;
       

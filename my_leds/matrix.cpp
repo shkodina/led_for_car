@@ -74,13 +74,11 @@ void matrix_rotate_fonts(){
 //============================================================================================
 char matrix_shift_cycle_left(char row, unsigned char sim = 0){
 
-
-
   if (!rshift[row]){
     rshifted_sim[row] = sim;  
   }
   
-  char row_start_index = row * MATRIX_COLOMS * MATRIX_COUNT;
+  char row_start_index = row * MATRIX_COLOMS * MATRIX_COUNT * MATRIX_BLOCK_SIZE;
 
   char buf = rmatrix[row_start_index];
 

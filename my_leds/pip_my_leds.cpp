@@ -128,8 +128,8 @@ void push_r_data_by_row(unsigned char * r_matrix, char row){
   char r2pos = r1pos + MATRIX_COLOMS * MATRIX_BLOCK_SIZE * MATRIX_COUNT;
 
   for (char i = 0; i < MATRIX_COLOMS * MATRIX_COUNT * MATRIX_BLOCK_SIZE; i++){
-    digitalWrite(PinG1, (( r_matrix[r1pos + i] >> row ) & 1 )); 
-    digitalWrite(PinG2, (( r_matrix[r2pos + i] >> row ) & 1 ));
+    digitalWrite(PinR1, (( r_matrix[r1pos + i] >> row ) & 1 )); 
+    digitalWrite(PinB2, (( r_matrix[r2pos + i] >> row ) & 1 ));
     puls_clk(); 
   }
 }
