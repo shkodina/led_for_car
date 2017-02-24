@@ -6,7 +6,9 @@
 
 #define TIMER_INIT_VAL_US 300
 #define TIMER_PRINT_ROW_PERIOD 2
-#define TIMER_SHIFT_PERIOD 200
+
+// CHANGEABLE PARAMS
+unsigned int TIMER_SHIFT_PERIOD = 200;
 
 enum { LED_PIN = 13 };
 enum LedState { LED_ON, LED_OFF, LED_BLINK };
@@ -42,15 +44,16 @@ void setup() {
   Serial.begin(9600);
 
 
-  strings[0].reset("Piper is", 8);
-  strings[1].reset("the best", 8);
+  strings[0].reset("Piper is the best ", 18);
+  strings[1].reset("1234", 4);
   
 
   matrix_rotate_fonts();
   matrix_clear();
-  matrix_set_text(0, strings[0].str, 8);
-  matrix_set_text(1, strings[1].str, 8);
-  
+  //matrix_set_text(0, strings[0].str, 8);
+  //matrix_set_text(1, strings[1].str, 8);
+
+  //strings[0].need_scroll = true;
 }
 //============================================================================================
 //============================================================================================
@@ -79,15 +82,10 @@ void state_machine(){
     for (char i = 0; i < MATRIX_ROWS; i++){
       if (strings[i].need_scroll){
         if(! matrix_get_shift(i)){
-          if ( strings[i].len <= MATRIX_COUNT * MATRIX_COLOMS){
-            matrix_shift_cycle_left(i);    
-          }else{
-            matrix_shift_cycle_left(i, strings[i].get_next_sim_for_scroll());
-          }
+          matrix_shift_cycle_left(i, strings[i].get_next_sim_for_scroll());
         }else{
           matrix_shift_cycle_left(i);    
-        }
-                
+        }        
       }
     }
   }

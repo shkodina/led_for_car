@@ -1,4 +1,5 @@
 #include "MatrixString.h"
+#include "matrix_defs.h"
 
 
 MatrixString::MatrixString(){
@@ -11,8 +12,15 @@ MatrixString::MatrixString(){
 //=============================================================================================
 //=============================================================================================
 void MatrixString::reset(unsigned char * new_str, unsigned char new_len){
-  memcpy(str, new_str, new_len);
-  len = new_len;
+
+  if (new_len < MATRIX_COLOMS * MATRIX_COUNT){
+    memset(str, ' ', MATRIX_COLOMS * MATRIX_COUNT);  
+    memcpy(str, new_str, new_len);
+    len = MATRIX_COLOMS * MATRIX_COUNT;
+  }else{
+    memcpy(str, new_str, new_len);
+    len = new_len;
+  } 
   need_scroll = false;
   next_sim_for_scroll_pos = 0; 
   full_scrolled_count = 0; 
