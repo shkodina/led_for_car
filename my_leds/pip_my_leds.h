@@ -14,5 +14,6 @@ void put_oe_high();
 void put_oe_low();
 
 void push_r_data_by_row(unsigned char * r_matrix, char row);
+void set_colors(char color1, char color2);
 
 #endif

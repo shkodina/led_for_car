@@ -13,10 +13,12 @@ class MatrixString {
     unsigned char len;
     unsigned char next_sim_for_scroll_pos;
     unsigned long full_scrolled_count;
+
+    char color;
 	
     MatrixString();
     unsigned char get_next_sim_for_scroll();
-    void reset(unsigned char * new_str, unsigned char new_len);
+    void reset(unsigned char * new_str, unsigned char new_len, char new_color);
     void append(unsigned char sim);
 };
 

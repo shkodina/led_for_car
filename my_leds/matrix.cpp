@@ -28,6 +28,16 @@ void matrix_clear(){
   }
 }
 //============================================================================================
+void matrix_clear_row(char row){
+  char start_i = row * MATRIX_COLOMS * MATRIX_COUNT;
+  for (char i = 0; i < MATRIX_COLOMS * MATRIX_COUNT; i++){
+    memcpy(&rmatrix[(start_i + i) * MATRIX_BLOCK_SIZE], &myfont8x8[0][0], MATRIX_BLOCK_SIZE);    
+  }
+
+  rshift[row] = 0; 
+  rshifted_sim[row] = 0; 
+}
+//============================================================================================
 void matrix_set_text (char row, char * text, char len){
   if (len > MATRIX_COLOMS * MATRIX_COUNT)
     len = MATRIX_COLOMS * MATRIX_COUNT;

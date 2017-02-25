@@ -18,7 +18,7 @@
 #define CMDCLK 45
 #define CMDOE  46
 
-#define PULS_CLK_DELAY_US 10
-#define PULS_LAT_DELAY_US 10
+#define PULS_CLK_DELAY_US 1
+#define PULS_LAT_DELAY_US 1
 
 #endif
