@@ -1,0 +1,124 @@
+object HeaderFooterForm: THeaderFooterForm
+  Left = 0
+  Top = 0
+  Caption = 'Header Footer Form'
+  ClientHeight = 567
+  ClientWidth = 384
+  Position = Designed
+  FormFactor.Width = 1440
+  FormFactor.Height = 900
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object Header: TToolBar
+    Size.Width = 384.000000000000000000
+    Size.Height = 48.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object HeaderLabel: TLabel
+      Align = Contents
+      Size.Width = 384.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'toollabel'
+      TextSettings.HorzAlign = Center
+      Text = 'String master'
+    end
+  end
+  object Footer: TToolBar
+    Align = Bottom
+    Position.Y = 519.000000000000000000
+    Size.Width = 384.000000000000000000
+    Size.Height = 48.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'bottomtoolbar'
+    TabOrder = 1
+  end
+  object Button1: TButton
+    Position.X = 8.000000000000000000
+    Position.Y = 56.000000000000000000
+    TabOrder = 2
+    Text = 'Hello!'
+    OnClick = Button1Click
+  end
+  object Label1: TLabel
+    Position.X = 104.000000000000000000
+    Position.Y = 64.000000000000000000
+    Text = 'Label1'
+  end
+  object Button2: TButton
+    Position.X = 8.000000000000000000
+    Position.Y = 128.000000000000000000
+    Size.Width = 41.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 5
+    Text = '1'
+    OnClick = Button2Click
+  end
+  object Memo1: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    Position.X = 8.000000000000000000
+    Position.Y = 168.000000000000000000
+    Size.Width = 353.000000000000000000
+    Size.Height = 257.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 6
+    Viewport.Width = 349.000000000000000000
+    Viewport.Height = 253.000000000000000000
+  end
+  object Button3: TButton
+    Position.X = 56.000000000000000000
+    Position.Y = 128.000000000000000000
+    Size.Width = 41.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 7
+    Text = '2'
+    OnClick = Button3Click
+  end
+  object Button4: TButton
+    Position.X = 104.000000000000000000
+    Position.Y = 128.000000000000000000
+    Size.Width = 41.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 8
+    Text = '3'
+    OnClick = Button4Click
+  end
+  object Button5: TButton
+    Position.X = 160.000000000000000000
+    Position.Y = 48.000000000000000000
+    TabOrder = 9
+    Text = 'str 0 >>'
+    OnClick = Button5Click
+  end
+  object Button6: TButton
+    Position.X = 160.000000000000000000
+    Position.Y = 80.000000000000000000
+    TabOrder = 10
+    Text = 'str 1 >>'
+    OnClick = Button6Click
+  end
+  object Button7: TButton
+    Position.X = 256.000000000000000000
+    Position.Y = 48.000000000000000000
+    TabOrder = 11
+    Text = 'str 0 stop'
+    OnClick = Button7Click
+  end
+  object Button8: TButton
+    Position.X = 256.000000000000000000
+    Position.Y = 80.000000000000000000
+    TabOrder = 12
+    Text = 'str 1 stop'
+    OnClick = Button8Click
+  end
+  object Bluetooth1: TBluetooth
+    Enabled = False
+    OnDiscoveryEnd = Bluetooth1DiscoveryEnd
+    Left = 296
+    Top = 432
+  end
+end
