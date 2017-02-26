@@ -19,7 +19,9 @@ void THeaderFooterForm::send_command(char in_cmd)
 	try{
 	this->my_sock->SendData(cmd);
 	}catch(...){
-		this->Memo1->Lines->Add("Exception while SendData()");
+		this->Memo1->Lines->Add("Exception while SendData() - Reboot Device");
+		this->Memo1->GoToTextEnd();
+		this->TabControl1->ActiveTab = this->TabItem3;
 	}
 	return;
 }
@@ -33,7 +35,9 @@ void THeaderFooterForm::send_command(char in_cmd, char data)
 	try{
 	this->my_sock->SendData(cmd);
 	}catch(...){
-		this->Memo1->Lines->Add("Exception while SendData()");
+		this->Memo1->Lines->Add("Exception while SendData() - Reboot Device");
+		this->Memo1->GoToTextEnd();
+		this->TabControl1->ActiveTab = this->TabItem3;
 	}
 
 	cmd[0] = data;
@@ -41,7 +45,9 @@ void THeaderFooterForm::send_command(char in_cmd, char data)
 	try{
 	this->my_sock->SendData(cmd);
 	}catch(...){
-		this->Memo1->Lines->Add("Exception while SendData()");
+		this->Memo1->Lines->Add("Exception while SendData() - Reboot Device");
+		this->Memo1->GoToTextEnd();
+		this->TabControl1->ActiveTab = this->TabItem3;
 	}
 
 	return;
@@ -70,12 +76,16 @@ void THeaderFooterForm::send_str(String str, char num_of_str)
 			try{
 				this->my_sock->SendData(bb);
 			}catch(...){
-				this->Memo1->Lines->Add("Exception while SendData(bb)");
+				this->Memo1->Lines->Add("Exception while SendData(bb) - Reboot Device");
+				this->Memo1->GoToTextEnd();
+				this->TabControl1->ActiveTab = this->TabItem3;
 			}
 		}
 		//this->my_sock->SendData(cmd);
 	}catch(...){
-		this->Memo1->Lines->Add("Exception while SendData(cmd)");
+		this->Memo1->Lines->Add("Exception while SendData(cmd) - Reboot Device");
+		this->Memo1->GoToTextEnd();
+		this->TabControl1->ActiveTab = this->TabItem3;
 	}
 	return;
 }
@@ -98,6 +108,7 @@ void __fastcall THeaderFooterForm::Button2Click(TObject *Sender)
 	this->Memo1->Lines->Add(Bluetooth1->Enabled);
 	this->Memo1->Lines->Add("Bluetooth1->StateConnected");
 	this->Memo1->Lines->Add(Bluetooth1->StateConnected);
+    this->Memo1->GoToTextEnd();
 }
 //---------------------------------------------------------------------------
 
@@ -153,6 +164,7 @@ void __fastcall THeaderFooterForm::Button3Click(TObject *Sender)
 			}
 		}
 	}
+	this->Memo1->GoToTextEnd();
 	//this->Bluetooth1->DiscoverDevices(1000);
 }
 //---------------------------------------------------------------------------
@@ -160,41 +172,7 @@ void __fastcall THeaderFooterForm::Button3Click(TObject *Sender)
 void __fastcall THeaderFooterForm::Bluetooth1DiscoveryEnd(TObject * const Sender,
 		  TBluetoothDeviceList * const ADeviceList)
 {
-	this->Memo1->Lines->Add("discovery ended");
-	this->Memo1->Lines->Add("founded: " +
-						IntToStr(this->Bluetooth1->LastDiscoveredDevices->Count));
-	this->Memo1->Lines->Add("------------");
-
-	for( char i = 0; i < this->Bluetooth1->LastDiscoveredDevices->Count; i++){
-
-		TBluetoothDevice * dev = this->Bluetooth1->LastDiscoveredDevices->First() + i;
-
-
-		this->Memo1->Lines->Add("device name");
-		this->Memo1->Lines->Add( dev->DeviceName );
-
-		if (dev->DeviceName == "HC-05") {
-			this->Memo1->Lines->Add("HC-05 FOUNDED!!!");
-		}
-
-		this->Memo1->Lines->Add("is pared");
-		this->Memo1->Lines->Add(
-		dev->IsPaired
-		);
-		this->Memo1->Lines->Add("         ");
-		this->Memo1->Lines->Add("services count: " +
-			IntToStr(dev->GetServices()->Count)
-		);
-
-		for (char i = 0; i < dev->GetServices()->Count; i++) {
-			TBluetoothService serv = dev->GetServices()->operator[](i);
-			this->Memo1->Lines->Add(
-				serv.Name
-			);
-		}
-
-
-	}
+	;
 }
 //---------------------------------------------------------------------------
 
@@ -207,6 +185,7 @@ void __fastcall THeaderFooterForm::Button4Click(TObject *Sender)
 	this->Memo1->Lines->Add("Bluetooth1->StateConnected");
 	this->Memo1->Lines->Add(Bluetooth1->StateConnected);
 	Bluetooth1->CleanupInstance();
+    this->Memo1->GoToTextEnd();
 }
 //---------------------------------------------------------------------------
 
@@ -342,6 +321,51 @@ void __fastcall THeaderFooterForm::BtClrR1SClick(TObject *Sender)
 void __fastcall THeaderFooterForm::BtClrR0SClick(TObject *Sender)
 {
 	send_command(SET_COLOR0, COLOR_G | COLOR_B);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall THeaderFooterForm::Button10Click(TObject *Sender)
+{
+	Bluetooth1->Enabled = true;
+	usleep(500000);
+	for( char i = 0; i < this->Bluetooth1->PairedDevices()->Count; i++)
+	{
+		TBluetoothDevice * dev = this->Bluetooth1->PairedDevices()->First() + i;
+		if (dev->DeviceName == "HC-05")
+		{
+			this->Memo1->Lines->Add("HC-05 FOUNDED!!!");
+			TBluetoothService serv = dev->GetServices()->First();
+			this->Memo1->Lines->Add(
+				serv.Name
+			);
+
+			char try_count = 10;
+			while (try_count--){
+				try{
+					this->Memo1->Lines->Add("trying connected...");
+					my_sock =  dev->CreateClientSocket(
+						serv.UUID,
+						true);
+
+					my_sock->Connect();
+
+					this->Memo1->Lines->Add("Connected.");
+					this->Memo1->GoToTextEnd();
+					this->Memo1->Repaint();
+
+					this->TabControl1->ActiveTab = this->TabItem1;
+					return;
+				}catch(...){
+					this->Memo1->Lines->Add("Exception!");
+					this->Memo1->Lines->Add("Reset Bluetooth and try again.");
+                    this->Memo1->Repaint();
+					usleep(1000000);
+				}
+			}
+			this->Memo1->Lines->Add("Try reboot Device or Matrix");
+			this->Memo1->GoToTextEnd();
+		}
+	}
 }
 //---------------------------------------------------------------------------
 

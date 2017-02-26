@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
-	<BT_BuildType>Debug</BT_BuildType>  <Transactions>
-    <Transaction>2017.02.26 09:46:01.657,C:\Users\Alex\Documents\Embarcadero\Studio\my_phone_1\PSMatrix.cbproj=C:\Users\Alex\Documents\Embarcadero\Studio\my_phone_1\HeaderFooterApplication.cbproj</Transaction>
-    <Transaction>2017.02.26 10:20:09.559,=C:\Users\Alex\Documents\Embarcadero\Studio\my_phone_1\my_cmd_prot.h</Transaction>
+	<BT_BuildType>Debug</BT_BuildType>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.559,=C:\Users\Alex\Documents\Embarcadero\Studio\my_phone_1\my_cmd_prot.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.657,C:\Users\Alex\Documents\Embarcadero\Studio\my_phone_1\HeaderFooterApplication.cbproj=C:\Users\Alex\Documents\Embarcadero\Studio\my_phone_1\PSMatrix.cbproj</Transaction>
   </Transactions>
 </BorlandProject>

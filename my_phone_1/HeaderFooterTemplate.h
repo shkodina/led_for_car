@@ -57,6 +57,7 @@ __published:	// IDE-managed Components
 	TButton *BtClrR0P;
 	TButton *BtClrR1S;
 	TButton *BtClrR0S;
+	TButton *Button10;
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall Button2Click(TObject *Sender);
 	void __fastcall Button3Click(TObject *Sender);
@@ -83,6 +84,7 @@ __published:	// IDE-managed Components
 	void __fastcall BtClrR0PClick(TObject *Sender);
 	void __fastcall BtClrR1SClick(TObject *Sender);
 	void __fastcall BtClrR0SClick(TObject *Sender);
+	void __fastcall Button10Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	__fastcall THeaderFooterForm(TComponent* Owner);
