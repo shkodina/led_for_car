@@ -8,6 +8,10 @@
 #define TIMER_INIT_VAL_US 300
 #define TIMER_PRINT_ROW_PERIOD 1
 #define TIMER_SHIFT_DEFAULT_PERIOD 90
+#define TIMER_CMD_TIMEOUT 90
+
+bool g_need_cmd_timeout = false;
+static unsigned char command = STUB;
 
 // CHANGEABLE PARAMS
 unsigned int TIMER_SHIFT_PERIOD = TIMER_SHIFT_DEFAULT_PERIOD;
@@ -43,8 +47,8 @@ void setup() {
   Serial.begin(9600);
 
 
-  strings[0].reset("Piper is the best ", 18, COLOR_R);
-  strings[1].reset("1234", 4, COLOR_B);
+  strings[0].reset("PSMatrix    ", 12, COLOR_R);
+  strings[1].reset("1234 abcd ABCD !?*    ", 22, COLOR_G);
 
   set_colors(strings[0].color, strings[1].color);
 
@@ -66,6 +70,7 @@ void print_row(){
 void state_machine(){
   static unsigned long tic_print_row = 0; 
   static unsigned long tic_shift = 0;  
+  static unsigned long tic_cmd_timeout = 0;
 
   if (tic_print_row++ >= TIMER_PRINT_ROW_PERIOD){
     tic_print_row = 0;
@@ -86,6 +91,12 @@ void state_machine(){
         }        
       }
     }
+  }
+
+  if (g_need_cmd_timeout && tic_cmd_timeout++ >= TIMER_CMD_TIMEOUT){
+    tic_cmd_timeout = 0;
+    g_need_cmd_timeout = false;
+    command = STUB;     
   }
 }
 //=====================================================================================
@@ -140,7 +151,7 @@ enum CMDpoints {CMD_WAIT, CMD_INIT, CMD_GATHERING, CMD_CHECKING};
 void serialEvent1() {
   Timer3.stop();
 
-  static unsigned char command = STUB;
+
   static char str_num = -1;
 
   static unsigned char str_pos = 0;

@@ -1,124 +1,459 @@
 object HeaderFooterForm: THeaderFooterForm
   Left = 0
   Top = 0
-  Caption = 'Header Footer Form'
-  ClientHeight = 567
-  ClientWidth = 384
+  Caption = 'PSMatrix'
+  ClientHeight = 562
+  ClientWidth = 365
   Position = Designed
-  FormFactor.Width = 1440
-  FormFactor.Height = 900
+  StyleBook = StyleBook1
+  FormFactor.Width = 1280
+  FormFactor.Height = 720
+  FormFactor.Orientations = [Portrait]
   FormFactor.Devices = [Desktop]
+  OnClose = FormClose
   DesignerMasterStyle = 0
-  object Header: TToolBar
-    Size.Width = 384.000000000000000000
-    Size.Height = 48.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 0
-    object HeaderLabel: TLabel
-      Align = Contents
-      Size.Width = 384.000000000000000000
-      Size.Height = 48.000000000000000000
-      Size.PlatformDefault = False
-      StyleLookup = 'toollabel'
-      TextSettings.HorzAlign = Center
-      Text = 'String master'
-    end
-  end
   object Footer: TToolBar
     Align = Bottom
-    Position.Y = 519.000000000000000000
-    Size.Width = 384.000000000000000000
+    Position.Y = 514.000000000000000000
+    Size.Width = 365.000000000000000000
     Size.Height = 48.000000000000000000
     Size.PlatformDefault = False
     StyleLookup = 'bottomtoolbar'
-    TabOrder = 1
+    TabOrder = 0
   end
-  object Button1: TButton
-    Position.X = 8.000000000000000000
-    Position.Y = 56.000000000000000000
-    TabOrder = 2
-    Text = 'Hello!'
-    OnClick = Button1Click
-  end
-  object Label1: TLabel
-    Position.X = 104.000000000000000000
-    Position.Y = 64.000000000000000000
-    Text = 'Label1'
-  end
-  object Button2: TButton
-    Position.X = 8.000000000000000000
-    Position.Y = 128.000000000000000000
-    Size.Width = 41.000000000000000000
-    Size.Height = 25.000000000000000000
+  object TabControl1: TTabControl
+    Align = Client
+    Size.Width = 365.000000000000000000
+    Size.Height = 514.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 5
-    Text = '1'
-    OnClick = Button2Click
-  end
-  object Memo1: TMemo
-    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
-    DataDetectorTypes = []
-    Position.X = 8.000000000000000000
-    Position.Y = 168.000000000000000000
-    Size.Width = 353.000000000000000000
-    Size.Height = 257.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 6
-    Viewport.Width = 349.000000000000000000
-    Viewport.Height = 253.000000000000000000
-  end
-  object Button3: TButton
-    Position.X = 56.000000000000000000
-    Position.Y = 128.000000000000000000
-    Size.Width = 41.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 7
-    Text = '2'
-    OnClick = Button3Click
-  end
-  object Button4: TButton
-    Position.X = 104.000000000000000000
-    Position.Y = 128.000000000000000000
-    Size.Width = 41.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 8
-    Text = '3'
-    OnClick = Button4Click
-  end
-  object Button5: TButton
-    Position.X = 160.000000000000000000
-    Position.Y = 48.000000000000000000
-    TabOrder = 9
-    Text = 'str 0 >>'
-    OnClick = Button5Click
-  end
-  object Button6: TButton
-    Position.X = 160.000000000000000000
-    Position.Y = 80.000000000000000000
-    TabOrder = 10
-    Text = 'str 1 >>'
-    OnClick = Button6Click
-  end
-  object Button7: TButton
-    Position.X = 256.000000000000000000
-    Position.Y = 48.000000000000000000
-    TabOrder = 11
-    Text = 'str 0 stop'
-    OnClick = Button7Click
-  end
-  object Button8: TButton
-    Position.X = 256.000000000000000000
-    Position.Y = 80.000000000000000000
-    TabOrder = 12
-    Text = 'str 1 stop'
-    OnClick = Button8Click
+    TabIndex = 2
+    TabOrder = 4
+    TabPosition = PlatformDefault
+    Sizes = (
+      365s
+      488s
+      365s
+      488s
+      365s
+      488s
+      365s
+      488s)
+    object TabItem1: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 47.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Main'
+      object Panel2: TPanel
+        Align = Top
+        Size.Width = 365.000000000000000000
+        Size.Height = 57.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object Button5: TButton
+          Align = Left
+          Size.Width = 120.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = 'Shift 0'
+          OnClick = Button5Click
+        end
+        object Button7: TButton
+          Align = Left
+          Position.X = 120.000000000000000000
+          Size.Width = 120.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          Text = 'Stop 0'
+          OnClick = Button7Click
+        end
+        object Button1: TButton
+          Align = Left
+          Position.X = 240.000000000000000000
+          Size.Width = 120.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = 'Clear 0'
+          OnClick = Button1Click
+        end
+      end
+      object Panel3: TPanel
+        Align = Top
+        Position.Y = 57.000000000000000000
+        Size.Width = 365.000000000000000000
+        Size.Height = 57.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object Button6: TButton
+          Align = Left
+          Size.Width = 120.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = 'Shift 1'
+          OnClick = Button6Click
+        end
+        object Button8: TButton
+          Align = Left
+          Position.X = 120.000000000000000000
+          Size.Width = 120.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          Text = 'Stop 1'
+          OnClick = Button8Click
+        end
+        object Button9: TButton
+          Align = Left
+          Position.X = 240.000000000000000000
+          Size.Width = 120.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = 'Clear 1'
+          OnClick = Button9Click
+        end
+      end
+      object Panel4: TPanel
+        Align = Top
+        Position.Y = 114.000000000000000000
+        Size.Width = 365.000000000000000000
+        Size.Height = 57.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        object ButSTR_00: TButton
+          Align = Left
+          StyledSettings = [Family, Size, FontColor]
+          Size.Width = 120.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = 'Thanks'
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          OnClick = ButSTR_00Click
+        end
+        object ButSTR_01: TButton
+          Align = Left
+          StyledSettings = [Family, Size, FontColor]
+          Position.X = 120.000000000000000000
+          Size.Width = 120.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          Text = 'Sorry'
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          OnClick = ButSTR_01Click
+        end
+        object ButSTR_02: TButton
+          Align = Left
+          StyledSettings = [Family, Size, FontColor]
+          Position.X = 240.000000000000000000
+          Size.Width = 120.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = 'Distance'
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          OnClick = ButSTR_02Click
+        end
+      end
+      object Panel5: TPanel
+        Align = Bottom
+        Position.Y = 431.000000000000000000
+        Size.Width = 365.000000000000000000
+        Size.Height = 57.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        object BtClrR1R: TButton
+          Align = Left
+          StyledSettings = [Family]
+          Size.Width = 60.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = 'R'
+          TextSettings.Font.Size = 40.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claRed
+          OnClick = BtClrR1RClick
+        end
+        object BtClrR1G: TButton
+          Align = Left
+          StyledSettings = [Family]
+          Position.X = 60.000000000000000000
+          Size.Width = 60.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          Text = 'G'
+          TextSettings.Font.Size = 40.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claLime
+          OnClick = BtClrR1GClick
+        end
+        object BtClrR1B: TButton
+          Align = Left
+          StyledSettings = [Family]
+          Position.X = 120.000000000000000000
+          Size.Width = 60.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 3
+          Text = 'B'
+          TextSettings.Font.Size = 40.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claAqua
+          OnClick = BtClrR1BClick
+        end
+        object BtClrR1Y: TButton
+          Align = Left
+          StyledSettings = [Family]
+          Position.X = 180.000000000000000000
+          Size.Width = 60.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = 'Y'
+          TextSettings.Font.Size = 40.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claYellow
+          OnClick = BtClrR1YClick
+        end
+        object BtCltR1P: TButton
+          Align = Left
+          StyledSettings = [Family]
+          Position.X = 240.000000000000000000
+          Size.Width = 60.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 4
+          Text = 'P'
+          TextSettings.Font.Size = 40.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claPurple
+          OnClick = BtCltR1PClick
+        end
+        object BtClrR1S: TButton
+          Align = Left
+          StyledSettings = [Family]
+          Position.X = 300.000000000000000000
+          Size.Width = 60.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 5
+          Text = 'S'
+          TextSettings.Font.Size = 40.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claAquamarine
+          OnClick = BtClrR1SClick
+        end
+      end
+      object Panel6: TPanel
+        Align = Bottom
+        Position.Y = 374.000000000000000000
+        Size.Width = 365.000000000000000000
+        Size.Height = 57.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 4
+        object BtClrR0R: TButton
+          Align = Left
+          StyledSettings = [Family]
+          Size.Width = 60.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = 'R'
+          TextSettings.Font.Size = 40.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claRed
+          OnClick = BtClrR0RClick
+        end
+        object BtClrR0G: TButton
+          Align = Left
+          StyledSettings = [Family]
+          Position.X = 60.000000000000000000
+          Size.Width = 60.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          Text = 'G'
+          TextSettings.Font.Size = 40.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claLime
+          OnClick = BtClrR0GClick
+        end
+        object BtClrR0B: TButton
+          Align = Left
+          StyledSettings = [Family]
+          Position.X = 120.000000000000000000
+          Size.Width = 60.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 3
+          Text = 'B'
+          TextSettings.Font.Size = 40.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claAqua
+          OnClick = BtClrR0BClick
+        end
+        object BtClrR0Y: TButton
+          Align = Left
+          StyledSettings = [Family]
+          Position.X = 180.000000000000000000
+          Size.Width = 60.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = 'Y'
+          TextSettings.Font.Size = 40.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claYellow
+          OnClick = BtClrR0YClick
+        end
+        object BtClrR0P: TButton
+          Align = Left
+          StyledSettings = [Family]
+          Position.X = 240.000000000000000000
+          Size.Width = 60.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 4
+          Text = 'P'
+          TextSettings.Font.Size = 40.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claPurple
+          OnClick = BtClrR0PClick
+        end
+        object BtClrR0S: TButton
+          Align = Left
+          StyledSettings = [Family]
+          Position.X = 300.000000000000000000
+          Size.Width = 60.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 5
+          Text = 'S'
+          TextSettings.Font.Size = 40.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claAquamarine
+          OnClick = BtClrR0SClick
+        end
+      end
+    end
+    object TabItem2: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 55.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Config'
+    end
+    object TabItem3: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = True
+      Size.Width = 44.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Utils'
+      object Memo1: TMemo
+        Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+        DataDetectorTypes = []
+        Align = Client
+        Size.Width = 365.000000000000000000
+        Size.Height = 431.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Viewport.Width = 361.000000000000000000
+        Viewport.Height = 427.000000000000000000
+      end
+      object Panel1: TPanel
+        Align = Top
+        Size.Width = 365.000000000000000000
+        Size.Height = 57.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object Button2: TButton
+          Align = MostLeft
+          Size.Width = 120.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = 'Enable Bluetooth'
+          OnClick = Button2Click
+        end
+        object Button3: TButton
+          Align = MostLeft
+          Position.X = 120.000000000000000000
+          Size.Width = 120.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          Text = 'Try connect'
+          OnClick = Button3Click
+        end
+        object Button4: TButton
+          Align = MostLeft
+          Position.X = 240.000000000000000000
+          Size.Width = 120.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = 'Reset Bluetooth'
+          OnClick = Button4Click
+        end
+      end
+    end
+    object TabItem4: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 43.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Free'
+    end
   end
   object Bluetooth1: TBluetooth
     Enabled = False
     OnDiscoveryEnd = Bluetooth1DiscoveryEnd
-    Left = 296
-    Top = 432
+    Left = 328
+    Top = 520
+  end
+  object StyleBook1: TStyleBook
+    Styles = <
+      item
+      end
+      item
+        Platform = 'Windows 7'
+        ResourcesBin = {
+          464D585F5354594C4520322E3501060E506E436C725230725374796C653103B2
+          0000545046300A5452656374616E676C6500095374796C654E616D65060E506E
+          436C725230725374796C653105416C69676E070643656E7465720A46696C6C2E
+          436F6C6F720707636C614C696D650748697454657374080A53697A652E576964
+          74680500000000000000F004400B53697A652E48656967687405000000000000
+          00E404401453697A652E506C6174666F726D44656661756C74080C5374726F6B
+          652E436F6C6F7207097846463937393739370000}
+      end>
+    Left = 288
+    Top = 520
   end
 end
