@@ -26,7 +26,7 @@ object HeaderFooterForm: THeaderFooterForm
     Size.Width = 365.000000000000000000
     Size.Height = 514.000000000000000000
     Size.PlatformDefault = False
-    TabIndex = 2
+    TabIndex = 1
     TabOrder = 4
     TabPosition = PlatformDefault
     Sizes = (
@@ -349,12 +349,97 @@ object HeaderFooterForm: THeaderFooterForm
           OnClick = BtClrR0SClick
         end
       end
+      object Panel7: TPanel
+        Align = Bottom
+        Position.Y = 317.000000000000000000
+        Size.Width = 365.000000000000000000
+        Size.Height = 57.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 5
+        object Bstr1: TButton
+          Align = Left
+          StyledSettings = [Family, FontColor]
+          Size.Width = 60.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 6
+          Text = '1'
+          TextSettings.Font.Size = 40.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          OnClick = Bstr1Click
+        end
+        object Button11: TButton
+          Align = Left
+          StyledSettings = [Family, FontColor]
+          Position.X = 60.000000000000000000
+          Size.Width = 60.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 5
+          Text = '2'
+          TextSettings.Font.Size = 40.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          OnClick = Button11Click
+        end
+        object Button12: TButton
+          Align = Left
+          StyledSettings = [Family, FontColor]
+          Position.X = 120.000000000000000000
+          Size.Width = 60.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 4
+          Text = '3'
+          TextSettings.Font.Size = 40.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          OnClick = Button12Click
+        end
+        object Button13: TButton
+          Align = Left
+          StyledSettings = [Family, FontColor]
+          Position.X = 180.000000000000000000
+          Size.Width = 60.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 3
+          Text = '4'
+          TextSettings.Font.Size = 40.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          OnClick = Button13Click
+        end
+        object Button14: TButton
+          Align = Left
+          StyledSettings = [Family, FontColor]
+          Position.X = 240.000000000000000000
+          Size.Width = 60.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = '5'
+          TextSettings.Font.Size = 40.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          OnClick = Button14Click
+        end
+        object Button15: TButton
+          Align = Left
+          StyledSettings = [Family, FontColor]
+          Position.X = 300.000000000000000000
+          Size.Width = 60.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          Text = '6'
+          TextSettings.Font.Size = 40.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          OnClick = Button15Click
+        end
+      end
     end
     object TabItem2: TTabItem
       CustomIcon = <
         item
         end>
-      IsSelected = False
+      IsSelected = True
       Size.Width = 55.000000000000000000
       Size.Height = 26.000000000000000000
       Size.PlatformDefault = False
@@ -363,12 +448,109 @@ object HeaderFooterForm: THeaderFooterForm
       Text = 'Config'
       ExplicitSize.cx = 55.000000000000000000
       ExplicitSize.cy = 26.000000000000000000
+      object Panel8: TPanel
+        Align = Top
+        Position.Y = 57.000000000000000000
+        Size.Width = 365.000000000000000000
+        Size.Height = 56.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object Edit1: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Center
+          StyleLookup = 'Edit1Style1'
+          TabOrder = 0
+          MaxLength = 120
+          Size.Width = 345.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          TextPrompt = 'set your text for string here...'
+        end
+      end
+      object Panel9: TPanel
+        Align = Top
+        Size.Width = 365.000000000000000000
+        Size.Height = 57.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object Button19: TButton
+          Align = Left
+          Size.Width = 120.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = 'Clear'
+          OnClick = Button19Click
+        end
+        object Button17: TButton
+          Align = Left
+          Position.X = 120.000000000000000000
+          Size.Width = 120.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          Text = 'Show as 0'
+          OnClick = Button17Click
+        end
+        object Button18: TButton
+          Align = Left
+          Position.X = 240.000000000000000000
+          Size.Width = 120.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = 'Show as 1'
+          OnClick = Button18Click
+        end
+      end
+      object Panel10: TPanel
+        Align = Top
+        Position.Y = 113.000000000000000000
+        Size.Width = 365.000000000000000000
+        Size.Height = 57.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        object Button16: TButton
+          Align = Left
+          Position.X = 240.000000000000000000
+          Size.Width = 120.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = 'Save String 0 to memory'
+          TextSettings.WordWrap = True
+          OnClick = Button16Click
+        end
+        object ComboBox1: TComboBox
+          Align = Left
+          Items.Strings = (
+            '1'
+            '2'
+            '3'
+            '4'
+            '5'
+            '6')
+          Position.X = 120.000000000000000000
+          Size.Width = 120.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+        end
+        object Label1: TLabel
+          Align = Left
+          Size.Width = 120.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.HorzAlign = Center
+          Text = 'String number'
+        end
+      end
     end
     object TabItem3: TTabItem
       CustomIcon = <
         item
         end>
-      IsSelected = True
+      IsSelected = False
       Size.Width = 44.000000000000000000
       Size.Height = 26.000000000000000000
       Size.PlatformDefault = False

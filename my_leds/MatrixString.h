@@ -4,11 +4,11 @@
 
 #include <string.h>
 
-#define MAX_LEN 128
+#define MATRIX_STRING_MAX_LEN 128
 
 class MatrixString {
   public:
-    char str[MAX_LEN];
+    char str[MATRIX_STRING_MAX_LEN];
     bool need_scroll;
     unsigned char len;
     unsigned char next_sim_for_scroll_pos;

@@ -6,6 +6,7 @@
 #include "HeaderFooterTemplate.h"
 #include <vector>
 #include "my_cmd_prot.h"
+#include "matrix_defs.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.fmx"
@@ -368,4 +369,71 @@ void __fastcall THeaderFooterForm::Button10Click(TObject *Sender)
 	}
 }
 //---------------------------------------------------------------------------
+
+void __fastcall THeaderFooterForm::Bstr1Click(TObject *Sender)
+{
+	send_command(SHOW_MEMORED_STR, 0);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall THeaderFooterForm::Button11Click(TObject *Sender)
+{
+	send_command(SHOW_MEMORED_STR, 1);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall THeaderFooterForm::Button12Click(TObject *Sender)
+{
+	send_command(SHOW_MEMORED_STR, 2);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall THeaderFooterForm::Button13Click(TObject *Sender)
+{
+	send_command(SHOW_MEMORED_STR, 3);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall THeaderFooterForm::Button14Click(TObject *Sender)
+{
+	send_command(SHOW_MEMORED_STR, 4);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall THeaderFooterForm::Button15Click(TObject *Sender)
+{
+    send_command(SHOW_MEMORED_STR, 5);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall THeaderFooterForm::Button19Click(TObject *Sender)
+{
+    this->Edit1->Text = "";
+}
+//---------------------------------------------------------------------------
+
+void __fastcall THeaderFooterForm::Button17Click(TObject *Sender)
+{
+	String str = this->Edit1->Text;
+	send_str(str, 0);
+	this->TabControl1->ActiveTab = this->TabItem1;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall THeaderFooterForm::Button18Click(TObject *Sender)
+{
+	String str = this->Edit1->Text;
+	send_str(str, 1);
+	this->TabControl1->ActiveTab = this->TabItem1;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall THeaderFooterForm::Button16Click(TObject *Sender)
+{
+	char num = -1;
+	num = this->ComboBox1->Selected->Text.ToInt() - 1 ;
+	send_command(SET_STR0_MEMORED, num);
+}
+//---------------------------------------------------------------------------
+
 

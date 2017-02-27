@@ -3,10 +3,6 @@
 
 #define CMD_MAX_THRESHOLD 0x20
 
-#define COLOR_R 1
-#define COLOR_G 2
-#define COLOR_B 4
-
 enum CMD_FOR_LEDS 
 {
   STUB =            0x00,
@@ -24,8 +20,8 @@ enum CMD_FOR_LEDS
   SET_STR1 =        0x0c,
   STR_STOP =        0x0d,
   SET_SCROLL =      0x0e,
-  STUB17 = 0x0f,
-  STUB16 = 0x10,
+  SET_STR0_MEMORED = 0x0f,
+  SHOW_MEMORED_STR = 0x10,
   STUB15 = 0x11,
   STUB14 = 0x12,
   STUB13 = 0x13,

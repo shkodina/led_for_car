@@ -3,7 +3,7 @@
 
 
 MatrixString::MatrixString(){
-  memset(str, ' ', MAX_LEN);
+  memset(str, ' ', MATRIX_STRING_MAX_LEN);
   len = 0;
   color = COLOR_R;
   need_scroll = false;
@@ -19,6 +19,9 @@ void MatrixString::reset(unsigned char * new_str, unsigned char new_len, char ne
     memcpy(str, new_str, new_len);
     len = MATRIX_COLOMS * MATRIX_COUNT;
   }else{
+	if (new_len > MATRIX_STRING_MAX_LEN){
+		new_len = MATRIX_STRING_MAX_LEN;
+	}	
     memcpy(str, new_str, new_len);
     len = new_len;
   } 
@@ -30,7 +33,7 @@ void MatrixString::reset(unsigned char * new_str, unsigned char new_len, char ne
 //=============================================================================================
 //=============================================================================================
 void MatrixString::append(unsigned char sim){
-  if (len != MAX_LEN){
+  if (len != MATRIX_STRING_MAX_LEN){
     str[len] = sim;
     len++;    
   }

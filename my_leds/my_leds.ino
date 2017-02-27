@@ -4,6 +4,7 @@
 #include "matrix_defs.h"
 #include "MatrixString.h"
 #include "my_cmd_prot.h"
+#include "eeprom_matrix_strings.h"
 
 #define TIMER_INIT_VAL_US 300
 #define TIMER_PRINT_ROW_PERIOD 1
@@ -146,6 +147,23 @@ void loop() {
 }
 //============================================================================================
 //============================================================================================
+void prepare_str(char str_num){
+  set_colors(strings[0].color, strings[1].color);   
+            
+  if ( strings[str_num].len > MATRIX_COLOMS * MATRIX_COUNT ){
+    matrix_clear_row(str_num);
+    strings[str_num].need_scroll = true;  
+    strings[str_num].next_sim_for_scroll_pos = 0;
+  }else{
+    matrix_set_text(str_num, strings[str_num].str, strings[str_num].len) ; 
+    strings[str_num].need_scroll = false;
+    strings[str_num].next_sim_for_scroll_pos = 0;
+  }  
+            
+}
+
+//============================================================================================
+//============================================================================================
 enum CMDpoints {CMD_WAIT, CMD_INIT, CMD_GATHERING, CMD_CHECKING};
 
 void serialEvent1() {
@@ -155,7 +173,7 @@ void serialEvent1() {
   static char str_num = -1;
 
   static unsigned char str_pos = 0;
-  static unsigned char new_str[MAX_LEN];
+  static unsigned char new_str[MATRIX_STRING_MAX_LEN];
 
   while (Serial1.available())
   {
@@ -235,6 +253,16 @@ void serialEvent1() {
           
           case SET_SCROLL:
             command = SET_SCROLL;
+          break;
+
+          case SET_STR0_MEMORED:
+            command = SET_STR0_MEMORED;
+          break;
+              
+          case SHOW_MEMORED_STR:
+            command = SHOW_MEMORED_STR;
+          break;
+               
           default:
           ;
         }
@@ -249,12 +277,7 @@ void serialEvent1() {
             command = STUB;
             strings[str_num].reset(new_str, str_pos, COLOR_R);
 
-            if ( strings[str_num].len > MATRIX_COLOMS * MATRIX_COUNT ){
-              matrix_clear_row(str_num);
-              strings[str_num].need_scroll = true;  
-            }else{
-              matrix_set_text(str_num, strings[str_num].str, strings[str_num].len) ; 
-            }
+            prepare_str(str_num);
             
             str_num = -1;  
             str_pos = 0;  
@@ -281,8 +304,21 @@ void serialEvent1() {
             TIMER_SHIFT_PERIOD = TIMER_SHIFT_DEFAULT_PERIOD;  
           }          
         break;
+
+        case SET_STR0_MEMORED:
+          command = STUB;
+          eeprom_str_set(&strings[0], sim);
+        break;
+
+        case SHOW_MEMORED_STR:
+          command = STUB;
+          eeprom_str_get(&strings[0], sim);
+          prepare_str(0);
+        break;
+        
         
         default:
+          command = STUB;
         break;  
       }
     }

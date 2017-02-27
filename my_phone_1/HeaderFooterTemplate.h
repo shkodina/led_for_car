@@ -14,6 +14,8 @@
 #include <FMX.Memo.hpp>
 #include <FMX.ScrollBox.hpp>
 #include <FMX.TabControl.hpp>
+#include <FMX.Edit.hpp>
+#include <FMX.ListBox.hpp>
 //---------------------------------------------------------------------------
 class THeaderFooterForm : public TForm
 {
@@ -58,6 +60,23 @@ __published:	// IDE-managed Components
 	TButton *BtClrR1S;
 	TButton *BtClrR0S;
 	TButton *Button10;
+	TPanel *Panel7;
+	TButton *Bstr1;
+	TButton *Button11;
+	TButton *Button12;
+	TButton *Button13;
+	TButton *Button14;
+	TButton *Button15;
+	TPanel *Panel8;
+	TEdit *Edit1;
+	TButton *Button16;
+	TButton *Button17;
+	TButton *Button18;
+	TButton *Button19;
+	TComboBox *ComboBox1;
+	TLabel *Label1;
+	TPanel *Panel9;
+	TPanel *Panel10;
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall Button2Click(TObject *Sender);
 	void __fastcall Button3Click(TObject *Sender);
@@ -85,6 +104,16 @@ __published:	// IDE-managed Components
 	void __fastcall BtClrR1SClick(TObject *Sender);
 	void __fastcall BtClrR0SClick(TObject *Sender);
 	void __fastcall Button10Click(TObject *Sender);
+	void __fastcall Bstr1Click(TObject *Sender);
+	void __fastcall Button11Click(TObject *Sender);
+	void __fastcall Button12Click(TObject *Sender);
+	void __fastcall Button13Click(TObject *Sender);
+	void __fastcall Button14Click(TObject *Sender);
+	void __fastcall Button15Click(TObject *Sender);
+	void __fastcall Button19Click(TObject *Sender);
+	void __fastcall Button17Click(TObject *Sender);
+	void __fastcall Button18Click(TObject *Sender);
+	void __fastcall Button16Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	__fastcall THeaderFooterForm(TComponent* Owner);
