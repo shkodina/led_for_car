@@ -16,6 +16,10 @@
 #include <FMX.TabControl.hpp>
 #include <FMX.Edit.hpp>
 #include <FMX.ListBox.hpp>
+#include <Xml.XMLDoc.hpp>
+#include <Xml.xmldom.hpp>
+#include <Xml.XMLIntf.hpp>
+#include <Xml.adomxmldom.hpp>
 //---------------------------------------------------------------------------
 class THeaderFooterForm : public TForm
 {
@@ -77,6 +81,18 @@ __published:	// IDE-managed Components
 	TLabel *Label1;
 	TPanel *Panel9;
 	TPanel *Panel10;
+	TPanel *Panel11;
+	TButton *Button20;
+	TXMLDocument *XMLDocument1;
+	TPanel *Panel12;
+	TPanel *Panel13;
+	TPanel *Panel14;
+	TButton *ButSTR_03;
+	TButton *ButSTR_04;
+	TButton *ButSTR_05;
+	TButton *ButSTR_06;
+	TButton *ButSTR_07;
+	TButton *ButSTR_08;
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall Button2Click(TObject *Sender);
 	void __fastcall Button3Click(TObject *Sender);
@@ -114,6 +130,13 @@ __published:	// IDE-managed Components
 	void __fastcall Button17Click(TObject *Sender);
 	void __fastcall Button18Click(TObject *Sender);
 	void __fastcall Button16Click(TObject *Sender);
+	void __fastcall Button20Click(TObject *Sender);
+	void __fastcall ButSTR_03Click(TObject *Sender);
+	void __fastcall ButSTR_04Click(TObject *Sender);
+	void __fastcall ButSTR_05Click(TObject *Sender);
+	void __fastcall ButSTR_06Click(TObject *Sender);
+	void __fastcall ButSTR_07Click(TObject *Sender);
+	void __fastcall ButSTR_08Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	__fastcall THeaderFooterForm(TComponent* Owner);
@@ -121,6 +144,30 @@ public:		// User declarations
 	void send_command(char cmd);
 	void send_command(char cmd, char data);
 	void send_str(String str, char num_of_str);
+	void send_str_from_button(int n);
+
+	void bt_auto_connect();
+    void read_config();
+
+
+
+	struct MatrixString {
+		String str;
+		char color;
+		char row;
+		String hint;
+	};
+
+	struct Config {
+		Config (){
+            psmatrix_name = "HC-05";
+		}
+
+		String psmatrix_name;
+    };
+
+	MatrixString mstrings[9];
+    Config cnf;
 };
 //---------------------------------------------------------------------------
 extern PACKAGE THeaderFooterForm *HeaderFooterForm;

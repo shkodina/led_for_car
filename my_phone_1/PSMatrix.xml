@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <matrix_name>HC-05</matrix_name>
+    <strings>
+        <string number="0" color="R" hint="Hello0" row="1"> Hello R_0_</string>
+        <string number="1" color="G" hint="Hello1" row="1"> Hello G_1_</string>
+        <string number="2" color="B" hint="Hello2" row="1"> Hello B_2_</string>
+        <string number="3" color="Y" hint="Hello3" row="1"> Hello Y_3_</string>
+        <string number="4" color="P" hint="Hello4" row="1"> Hello P_4_</string>
+        <string number="5" color="S" hint="Hello5" row="1"> Hello S_5_</string>
+        <string number="6" color="R" hint="Hello6" row="1"> Hello R_6_</string>
+        <string number="7" color="G" hint="Hello7" row="1"> Hello G_7_</string>
+        <string number="8" color="B" hint="Hello8" row="1"> Hello B_8_</string>
+    </strings>
+</config>

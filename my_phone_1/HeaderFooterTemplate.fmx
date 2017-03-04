@@ -126,7 +126,7 @@ object HeaderFooterForm: THeaderFooterForm
       end
       object Panel4: TPanel
         Align = Top
-        Position.Y = 114.000000000000000000
+        Position.Y = 129.000000000000000000
         Size.Width = 365.000000000000000000
         Size.Height = 57.000000000000000000
         Size.PlatformDefault = False
@@ -138,7 +138,7 @@ object HeaderFooterForm: THeaderFooterForm
           Size.Height = 57.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
-          Text = 'Thanks'
+          Text = 'ButSTR_00'
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           OnClick = ButSTR_00Click
         end
@@ -150,7 +150,7 @@ object HeaderFooterForm: THeaderFooterForm
           Size.Height = 57.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 1
-          Text = 'Sorry'
+          Text = 'ButSTR_01'
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           OnClick = ButSTR_01Click
         end
@@ -162,7 +162,7 @@ object HeaderFooterForm: THeaderFooterForm
           Size.Height = 57.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 2
-          Text = 'Distance'
+          Text = 'ButSTR_02'
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           OnClick = ButSTR_02Click
         end
@@ -434,6 +434,100 @@ object HeaderFooterForm: THeaderFooterForm
           OnClick = Button15Click
         end
       end
+      object Panel12: TPanel
+        Align = Top
+        Position.Y = 186.000000000000000000
+        Size.Width = 365.000000000000000000
+        Size.Height = 57.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 6
+        object ButSTR_03: TButton
+          Align = Left
+          StyledSettings = [Family, Size, FontColor]
+          Size.Width = 120.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = 'ButSTR_03'
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          OnClick = ButSTR_03Click
+        end
+        object ButSTR_04: TButton
+          Align = Left
+          StyledSettings = [Family, Size, FontColor]
+          Position.X = 120.000000000000000000
+          Size.Width = 120.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          Text = 'ButSTR_04'
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          OnClick = ButSTR_04Click
+        end
+        object ButSTR_05: TButton
+          Align = Left
+          StyledSettings = [Family, Size, FontColor]
+          Position.X = 240.000000000000000000
+          Size.Width = 120.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = 'ButSTR_05'
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          OnClick = ButSTR_05Click
+        end
+      end
+      object Panel13: TPanel
+        Align = Top
+        Position.Y = 243.000000000000000000
+        Size.Width = 365.000000000000000000
+        Size.Height = 57.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 7
+        object ButSTR_06: TButton
+          Align = Left
+          StyledSettings = [Family, Size, FontColor]
+          Size.Width = 120.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = 'ButSTR_06'
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          OnClick = ButSTR_06Click
+        end
+        object ButSTR_07: TButton
+          Align = Left
+          StyledSettings = [Family, Size, FontColor]
+          Position.X = 120.000000000000000000
+          Size.Width = 120.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          Text = 'ButSTR_07'
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          OnClick = ButSTR_07Click
+        end
+        object ButSTR_08: TButton
+          Align = Left
+          StyledSettings = [Family, Size, FontColor]
+          Position.X = 240.000000000000000000
+          Size.Width = 120.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = 'ButSTR_08'
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          OnClick = ButSTR_08Click
+        end
+      end
+      object Panel14: TPanel
+        Align = Top
+        Position.Y = 114.000000000000000000
+        Size.Width = 365.000000000000000000
+        Size.Height = 15.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 8
+      end
     end
     object TabItem2: TTabItem
       CustomIcon = <
@@ -452,7 +546,7 @@ object HeaderFooterForm: THeaderFooterForm
         Align = Top
         Position.Y = 57.000000000000000000
         Size.Width = 365.000000000000000000
-        Size.Height = 56.000000000000000000
+        Size.Height = 57.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
         object Edit1: TEdit
@@ -505,7 +599,7 @@ object HeaderFooterForm: THeaderFooterForm
       end
       object Panel10: TPanel
         Align = Top
-        Position.Y = 113.000000000000000000
+        Position.Y = 114.000000000000000000
         Size.Width = 365.000000000000000000
         Size.Height = 57.000000000000000000
         Size.PlatformDefault = False
@@ -543,6 +637,23 @@ object HeaderFooterForm: THeaderFooterForm
           Size.PlatformDefault = False
           TextSettings.HorzAlign = Center
           Text = 'String number'
+        end
+      end
+      object Panel11: TPanel
+        Align = Top
+        Position.Y = 171.000000000000000000
+        Size.Width = 365.000000000000000000
+        Size.Height = 57.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        object Button20: TButton
+          Align = Left
+          Size.Width = 120.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = 'load from xml'
+          OnClick = Button20Click
         end
       end
     end
@@ -657,5 +768,10 @@ object HeaderFooterForm: THeaderFooterForm
     OnDiscoveryEnd = Bluetooth1DiscoveryEnd
     Left = 328
     Top = 520
+  end
+  object XMLDocument1: TXMLDocument
+    Left = 248
+    Top = 522
+    DOMVendorDesc = 'ADOM XML v4'
   end
 end

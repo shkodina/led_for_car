@@ -12,6 +12,108 @@
 #pragma resource "*.fmx"
 THeaderFooterForm *HeaderFooterForm;
 //---------------------------------------------------------------------------
+char select_color(char color_sim){
+	switch (color_sim) {
+	case 'R':
+		return COLOR_R;
+	case 'G':
+		return COLOR_G;
+	case 'B':
+		return COLOR_B;
+	case 'Y':
+		return COLOR_R | COLOR_G;
+	case 'P':
+		return COLOR_R | COLOR_B;
+	case 'S':
+		return COLOR_G | COLOR_B;
+	default:
+		return COLOR_R;
+        ;
+	}
+    return COLOR_R;
+}
+//---------------------------------------------------------------------------
+void THeaderFooterForm::bt_auto_connect()
+{
+	Bluetooth1->Enabled = true;
+	usleep(500000);
+	for( char i = 0; i < this->Bluetooth1->PairedDevices()->Count; i++)
+	{
+		TBluetoothDevice * dev = this->Bluetooth1->PairedDevices()->First() + i;
+		if (dev->DeviceName == this->cnf.psmatrix_name)
+		{
+			this->Memo1->Lines->Add(this->cnf.psmatrix_name + " FOUNDED!!!");
+			TBluetoothService serv = dev->GetServices()->First();
+			this->Memo1->Lines->Add(
+				serv.Name
+			);
+
+			char try_count = 10;
+			while (try_count--){
+				try{
+					this->Memo1->Lines->Add("trying connected...");
+					my_sock =  dev->CreateClientSocket(
+						serv.UUID,
+						true);
+
+					my_sock->Connect();
+
+					this->Memo1->Lines->Add("Connected.");
+					this->Memo1->GoToTextEnd();
+					this->Memo1->Repaint();
+
+					this->TabControl1->ActiveTab = this->TabItem1;
+					return;
+				}catch(...){
+					this->Memo1->Lines->Add("Exception!");
+					this->Memo1->Lines->Add("Reset Bluetooth and try again.");
+                    this->Memo1->Repaint();
+					usleep(1000000);
+				}
+			}
+			this->Memo1->Lines->Add("Try reboot Device or Matrix");
+			this->Memo1->GoToTextEnd();
+		}
+	}
+}
+//---------------------------------------------------------------------------
+void THeaderFooterForm::read_config()
+{
+	String youFilePath = "/sdcard/PSMatrix.xml";
+
+	this->XMLDocument1->LoadFromFile(youFilePath);
+	this->XMLDocument1->Active = true;
+
+	IXMLNode * root = this->XMLDocument1->DocumentElement ;
+
+	for (int i = 0; i < root->ChildNodes->Count; i++)
+	{
+		IXMLNode * child =  this->XMLDocument1->DocumentElement->ChildNodes->Get(i);
+		if (child->NodeName == "matrix_name")
+		{
+            this->cnf.psmatrix_name = child->GetText();
+		}
+		if (child->NodeName == "strings")
+		{
+			for (int ii = 0; ii < child->ChildNodes->Count; ii++)
+			{
+				IXMLNode * curstr = child->ChildNodes->Get(ii);
+
+				int num = curstr->GetAttribute("number");
+				String color = curstr->GetAttribute("color");
+				this->mstrings[num].color = select_color(color[0]);
+				int row = curstr->GetAttribute("row");
+				this->mstrings[num].row = row;
+				this->mstrings[num].hint = curstr->GetAttribute("hint");
+				this->mstrings[num].str = curstr->GetText();
+			}
+
+
+
+		}
+	}
+}
+//---------------------------------------------------------------------------
 void THeaderFooterForm::send_command(char in_cmd)
 {
 	DynamicArray<System::Byte> cmd;
@@ -89,6 +191,12 @@ void THeaderFooterForm::send_str(String str, char num_of_str)
 		this->TabControl1->ActiveTab = this->TabItem3;
 	}
 	return;
+}
+//---------------------------------------------------------------------------
+void THeaderFooterForm::send_str_from_button(int n){
+	char cmd = mstrings[n].row ? SET_COLOR1 : SET_COLOR0;
+	send_str(mstrings[n].str, mstrings[n].row);
+	send_command(cmd, mstrings[n].color);
 }
 //---------------------------------------------------------------------------
 __fastcall THeaderFooterForm::THeaderFooterForm(TComponent* Owner)
@@ -216,8 +324,7 @@ void __fastcall THeaderFooterForm::Button8Click(TObject *Sender)
 
 void __fastcall THeaderFooterForm::ButSTR_00Click(TObject *Sender)
 {
-	String str = "  Thanks!  ";
-	send_str(str, 0);
+	this->send_str_from_button(0);
 }
 //---------------------------------------------------------------------------
 
@@ -242,15 +349,13 @@ void __fastcall THeaderFooterForm::Button9Click(TObject *Sender)
 
 void __fastcall THeaderFooterForm::ButSTR_01Click(TObject *Sender)
 {
-	String str = "  Sorry!  ";
-	send_str(str, 1);
+	this->send_str_from_button(1);
 }
 //---------------------------------------------------------------------------
 
 void __fastcall THeaderFooterForm::ButSTR_02Click(TObject *Sender)
 {
-	String str = "Too close man! ";
-	send_str(str, 1);
+	this->send_str_from_button(2);
 }
 //---------------------------------------------------------------------------
 void __fastcall THeaderFooterForm::BtClrR1RClick(TObject *Sender)
@@ -327,46 +432,7 @@ void __fastcall THeaderFooterForm::BtClrR0SClick(TObject *Sender)
 
 void __fastcall THeaderFooterForm::Button10Click(TObject *Sender)
 {
-	Bluetooth1->Enabled = true;
-	usleep(500000);
-	for( char i = 0; i < this->Bluetooth1->PairedDevices()->Count; i++)
-	{
-		TBluetoothDevice * dev = this->Bluetooth1->PairedDevices()->First() + i;
-		if (dev->DeviceName == "HC-05")
-		{
-			this->Memo1->Lines->Add("HC-05 FOUNDED!!!");
-			TBluetoothService serv = dev->GetServices()->First();
-			this->Memo1->Lines->Add(
-				serv.Name
-			);
-
-			char try_count = 10;
-			while (try_count--){
-				try{
-					this->Memo1->Lines->Add("trying connected...");
-					my_sock =  dev->CreateClientSocket(
-						serv.UUID,
-						true);
-
-					my_sock->Connect();
-
-					this->Memo1->Lines->Add("Connected.");
-					this->Memo1->GoToTextEnd();
-					this->Memo1->Repaint();
-
-					this->TabControl1->ActiveTab = this->TabItem1;
-					return;
-				}catch(...){
-					this->Memo1->Lines->Add("Exception!");
-					this->Memo1->Lines->Add("Reset Bluetooth and try again.");
-                    this->Memo1->Repaint();
-					usleep(1000000);
-				}
-			}
-			this->Memo1->Lines->Add("Try reboot Device or Matrix");
-			this->Memo1->GoToTextEnd();
-		}
-	}
+	bt_auto_connect();
 }
 //---------------------------------------------------------------------------
 
@@ -436,4 +502,63 @@ void __fastcall THeaderFooterForm::Button16Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+
+void __fastcall THeaderFooterForm::Button20Click(TObject *Sender)
+{
+	read_config();
+
+	this->ButSTR_00->Text = mstrings[0].hint;
+	this->ButSTR_01->Text = mstrings[1].hint;
+	this->ButSTR_02->Text = mstrings[2].hint;
+
+	this->ButSTR_03->Text = mstrings[3].hint;
+	this->ButSTR_04->Text = mstrings[4].hint;
+	this->ButSTR_05->Text = mstrings[5].hint;
+
+	this->ButSTR_06->Text = mstrings[6].hint;
+	this->ButSTR_07->Text = mstrings[7].hint;
+	this->ButSTR_08->Text = mstrings[8].hint;
+
+    this->TabControl1->ActiveTab = this->TabItem3;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall THeaderFooterForm::ButSTR_03Click(TObject *Sender)
+{
+	this->send_str_from_button(3);
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall THeaderFooterForm::ButSTR_04Click(TObject *Sender)
+{
+	this->send_str_from_button(4);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall THeaderFooterForm::ButSTR_05Click(TObject *Sender)
+{
+	this->send_str_from_button(5);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall THeaderFooterForm::ButSTR_06Click(TObject *Sender)
+{
+	this->send_str_from_button(6);
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall THeaderFooterForm::ButSTR_07Click(TObject *Sender)
+{
+	this->send_str_from_button(7);
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall THeaderFooterForm::ButSTR_08Click(TObject *Sender)
+{
+	this->send_str_from_button(8);
+}
+//---------------------------------------------------------------------------
 
