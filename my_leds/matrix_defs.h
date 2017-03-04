@@ -8,7 +8,7 @@
 
 #define MATRIX_BLOCK_SIZE 8
 
-#define MYFONT8X8SHIFT 0x20
+
 
 #define COLOR_R 1
 #define COLOR_G 2

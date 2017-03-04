@@ -2,6 +2,7 @@
 #define MY_STOLLED_FONT_H
 
 #define FONT_COUNT 128
+#define MYFONT8X8SHIFT 0x20
 
 //const 
 static 

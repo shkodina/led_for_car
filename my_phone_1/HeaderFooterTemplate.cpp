@@ -91,8 +91,14 @@ void THeaderFooterForm::read_config()
 		IXMLNode * child =  this->XMLDocument1->DocumentElement->ChildNodes->Get(i);
 		if (child->NodeName == "matrix_name")
 		{
-            this->cnf.psmatrix_name = child->GetText();
+			this->cnf.psmatrix_name = child->GetText();
 		}
+
+		if (child->NodeName == "russian_letters_shift")
+		{
+			this->cnf.russian_letters_shift = StrToInt(child->GetText());
+		}
+
 		if (child->NodeName == "strings")
 		{
 			for (int ii = 0; ii < child->ChildNodes->Count; ii++)
@@ -166,7 +172,11 @@ void THeaderFooterForm::send_str(String str, char num_of_str)
 	cmd[0] = num_of_str ? SET_STR1 : SET_STR0;
 
 	for (int i = 0; i < str.Length(); i++) {
-		cmd[i+1] = str[i];
+		if(str[i] > 255){
+			cmd[i+1] = str[i] - this->cnf.russian_letters_shift;
+		}else{
+			cmd[i+1] = str[i];
+		}
 	}
 
 	cmd[cmd.Length-1] = STR_STOP;
@@ -559,6 +569,17 @@ void __fastcall THeaderFooterForm::ButSTR_07Click(TObject *Sender)
 void __fastcall THeaderFooterForm::ButSTR_08Click(TObject *Sender)
 {
 	this->send_str_from_button(8);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall THeaderFooterForm::Button21Click(TObject *Sender)
+{
+/*	String str = this->Edit1->Text;
+	for (int i = 0; i < str.Length(); i++) {
+		int s = str[i];
+		this->Memo1->Lines->Add("str[] = " + IntToStr(s));
+		;
+	} */
 }
 //---------------------------------------------------------------------------
 

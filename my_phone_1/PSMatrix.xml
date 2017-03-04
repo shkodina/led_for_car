@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <config>
     <matrix_name>HC-05</matrix_name>
+    <russian_letters_shift>848</russian_letters_shift>
     <strings>
         <string number="0" color="R" hint="Hello0" row="1"> Hello R_0_</string>
         <string number="1" color="G" hint="Hello1" row="1"> Hello G_1_</string>

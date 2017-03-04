@@ -93,6 +93,7 @@ __published:	// IDE-managed Components
 	TButton *ButSTR_06;
 	TButton *ButSTR_07;
 	TButton *ButSTR_08;
+	TButton *Button21;
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall Button2Click(TObject *Sender);
 	void __fastcall Button3Click(TObject *Sender);
@@ -137,6 +138,7 @@ __published:	// IDE-managed Components
 	void __fastcall ButSTR_06Click(TObject *Sender);
 	void __fastcall ButSTR_07Click(TObject *Sender);
 	void __fastcall ButSTR_08Click(TObject *Sender);
+	void __fastcall Button21Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	__fastcall THeaderFooterForm(TComponent* Owner);
@@ -160,10 +162,12 @@ public:		// User declarations
 
 	struct Config {
 		Config (){
-            psmatrix_name = "HC-05";
+			psmatrix_name = "HC-05";
+            russian_letters_shift = 848;
 		}
 
 		String psmatrix_name;
+		int russian_letters_shift;
     };
 
 	MatrixString mstrings[9];

@@ -655,6 +655,15 @@ object HeaderFooterForm: THeaderFooterForm
           Text = 'load from xml'
           OnClick = Button20Click
         end
+        object Button21: TButton
+          Align = Left
+          Position.X = 120.000000000000000000
+          Size.Width = 120.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          OnClick = Button21Click
+        end
       end
     end
     object TabItem3: TTabItem

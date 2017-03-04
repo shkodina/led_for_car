@@ -47,16 +47,18 @@ void setup() {
   Serial1.begin(9600);
   Serial.begin(9600);
 
-
-  strings[0].reset("PSMatrix    ", 12, COLOR_R);
-  strings[1].reset("1234 abcd ABCD !?*    ", 22, COLOR_G);
+  unsigned char str1[6] = {0xCF, 0xF0, 0xE8, 0xE2, 0xE5, 0xF2}; // Privet in russian
+  
+  strings[0].reset(str1, 6, COLOR_R);
+  strings[1].reset("абвгдежзиклмнопрстуфхцчшщъыьэюя", 31, COLOR_G);
 
   set_colors(strings[0].color, strings[1].color);
 
   matrix_rotate_fonts();
   matrix_clear();
 
-  //strings[0].need_scroll = true;
+  strings[0].need_scroll = true;
+  strings[1].need_scroll = true;
 }
 //============================================================================================
 //============================================================================================
@@ -83,7 +85,7 @@ void state_machine(){
 
 
     
-    for (char i = 0; i < MATRIX_ROWS; i++){
+    for (unsigned char i = 0; i < MATRIX_ROWS; i++){
       if (strings[i].need_scroll){
         if(! matrix_get_shift(i)){
           matrix_shift_cycle_left(i, strings[i].get_next_sim_for_scroll());
@@ -147,7 +149,7 @@ void loop() {
 }
 //============================================================================================
 //============================================================================================
-void prepare_str(char str_num){
+void prepare_str(unsigned char str_num){
   set_colors(strings[0].color, strings[1].color);   
             
   if ( strings[str_num].len > MATRIX_COLOMS * MATRIX_COUNT ){
@@ -230,13 +232,13 @@ void serialEvent1() {
           break;
   
           case SET_STR0:
-            Serial.print("ask new str 0");
+            Serial.print("\n ask new str 0 = ");
             str_num = 0;
             str_pos = 0; 
             command = SET_STR0;
           break;
           case SET_STR1:
-            Serial.print("ask new str 1");
+            Serial.print("\n ask new str 1 = ");
             str_num = 1;
             str_pos = 0; 
             command = SET_STR1;
