@@ -6,10 +6,21 @@
 #include "my_cmd_prot.h"
 #include "eeprom_matrix_strings.h"
 
+#include <SPI.h>
+#include "nRF24L01.h"
+#include "RF24.h"
+#include "printf.h"
+
 #define TIMER_INIT_VAL_US 300
 #define TIMER_PRINT_ROW_PERIOD 1
 #define TIMER_SHIFT_DEFAULT_PERIOD 90
 #define TIMER_CMD_TIMEOUT 90
+
+// Hardware configuration: Set up nRF24L01 radio on SPI bus plus pins 
+RF24 radio(6,7);
+
+// Topology
+const uint64_t pipes[2] = { 0xABCDABCD71LL, 0x544d52687CLL };              // Radio pipe addresses for the 2 nodes to communicate.
 
 bool g_need_cmd_timeout = false;
 static unsigned char command = STUB;
@@ -59,6 +70,19 @@ void setup() {
 
   strings[0].need_scroll = true;
   strings[1].need_scroll = true;
+
+  // rf24l01
+  // Setup and configure rf radio
+  printf_begin();
+  radio.begin();
+  radio.setAutoAck(1);                    // Ensure autoACK is enabled
+  radio.enableAckPayload();               // Allow optional ack payloads
+  radio.setRetries(0,15);                 // Smallest time between retries, max no. of retries
+  radio.setPayloadSize(1);                // Here we are sending 1-byte payloads to test the call-response speed
+  radio.openWritingPipe(pipes[1]);        // Both radios listen on the same pipes by default, and switch when writing
+  radio.openReadingPipe(1,pipes[0]);
+  radio.startListening();                 // Start listening
+  radio.printDetails();                   // Dump the configuration of the rf unit for debugging
 }
 //============================================================================================
 //============================================================================================
@@ -144,8 +168,23 @@ void loop() {
       }
     }
   }
-  */
+  */      
   
+  if (radio.available()){
+    Timer3.stop();
+    byte sim = -1;
+    radio.read( &sim, 1 ); 
+    Serial.print(sim, HEX);
+    sim %= 6;
+    eeprom_str_get(&strings[0], sim); 
+    prepare_str(0);
+    Timer3.start();
+  }
+  
+          
+          
+
+          
 }
 //============================================================================================
 //============================================================================================
