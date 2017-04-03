@@ -1,0 +1,37 @@
+// LED --> Arduio
+
+// PORTC
+
+#define PinR1 30
+#define PinG1 31
+#define PinB1 32
+
+#define PinR2 33
+#define PinG2 34
+#define PinB2 35
+
+// взять 22 - 24 - PORTA
+
+#define PinAdrA 36
+#define PinAdrB 37
+#define PinAdrC 38
+#define PinAdrD 39
+
+#define CMDLAT 44
+#define CMDCLK 45
+#define CMDOE  46
+
+// Bluetooth --> use Serial1 
+#defien HC5USARTTX 18 // RX1
+#define HC5USARTRX 19 // TX1
+
+// DEBUG --> use Serial0
+#defien DebugUSARTTX 0 // RX0
+#define DebugUSARTRX 1 // TX0
+
+// RF24L01 --> use SPI + pins 6, 7
+#define RF24MISO 50 // MISO
+#define RF24MOSI 51 // MOSI
+#define RF24SCK 52 // SCK
+#define RF24CE 6 
+#define RF24CSN 7 
