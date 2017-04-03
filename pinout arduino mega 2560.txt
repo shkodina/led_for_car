@@ -2,20 +2,20 @@
 
 // PORTC
 
-#define PinR1 30
-#define PinG1 31
-#define PinB1 32
+#define PinR1 37
+#define PinG1 36
+#define PinB1 35
 
-#define PinR2 33
-#define PinG2 34
-#define PinB2 35
+#define PinR2 34
+#define PinG2 33
+#define PinB2 32
 
 // взять 22 - 24 - PORTA
 
-#define PinAdrA 36
-#define PinAdrB 37
-#define PinAdrC 38
-#define PinAdrD 39
+#define PinAdrA 22
+#define PinAdrB 23
+#define PinAdrC 24
+#define PinAdrD 25
 
 #define CMDLAT 44
 #define CMDCLK 45

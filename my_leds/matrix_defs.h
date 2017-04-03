@@ -13,6 +13,7 @@
 #define COLOR_R 1
 #define COLOR_G 2
 #define COLOR_B 4
+#define COLOR_SHIFT 3
 
 
 #endif

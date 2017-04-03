@@ -13,7 +13,7 @@
 
 #define TIMER_INIT_VAL_US 300
 #define TIMER_PRINT_ROW_PERIOD 1
-#define TIMER_SHIFT_DEFAULT_PERIOD 90
+#define TIMER_SHIFT_DEFAULT_PERIOD 105
 #define TIMER_CMD_TIMEOUT 90
 
 // Hardware configuration: Set up nRF24L01 radio on SPI bus plus pins 
