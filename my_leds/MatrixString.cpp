@@ -8,7 +8,9 @@ MatrixString::MatrixString(){
   color = COLOR_R;
   need_scroll = false;
   next_sim_for_scroll_pos = 0;
-  full_scrolled_count = 0;
+  
+  show_count = 0;
+  need_show_count = false;
 }
 //=============================================================================================
 //=============================================================================================
@@ -28,7 +30,8 @@ void MatrixString::reset(unsigned char * new_str, unsigned char new_len, char ne
   color = new_color;
   need_scroll = false;
   next_sim_for_scroll_pos = 0; 
-  full_scrolled_count = 0; 
+  show_count = false;
+  need_show_count = 0;
 }
 //=============================================================================================
 //=============================================================================================
@@ -45,7 +48,6 @@ unsigned char MatrixString::get_next_sim_for_scroll(){
   next_sim_for_scroll_pos++;
   if (next_sim_for_scroll_pos == len){
     next_sim_for_scroll_pos = 0;
-    full_scrolled_count++;
   }
   return sim;
 }

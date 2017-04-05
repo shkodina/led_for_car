@@ -15,6 +15,7 @@
 #define TIMER_PRINT_ROW_PERIOD 1
 #define TIMER_SHIFT_DEFAULT_PERIOD 105
 #define TIMER_CMD_TIMEOUT 90
+#define SHOW_COUNT 3
 
 // Hardware configuration: Set up nRF24L01 radio on SPI bus plus pins 
 RF24 radio(6,7);
@@ -117,6 +118,18 @@ void state_machine(){
           matrix_shift_cycle_left(i);    
         }        
       }
+
+
+      if (strings[i].need_show_count){
+        if (strings[i].show_count++ >= strings[i].len * 8 * SHOW_COUNT){
+          strings[i].need_show_count = false;
+          strings[i].show_count = 0;   
+          strings[i].need_scroll = false;
+          strings[i].next_sim_for_scroll_pos = 0;
+          matrix_clear_row(i); 
+        }
+      }
+      
     }
   }
 
@@ -355,6 +368,7 @@ void serialEvent1() {
           command = STUB;
           eeprom_str_get(&strings[0], sim);
           prepare_str(0);
+          strings[0].need_show_count = true;
         break;
         
         

@@ -12,7 +12,9 @@ class MatrixString {
     bool need_scroll;
     unsigned char len;
     unsigned char next_sim_for_scroll_pos;
-    unsigned long full_scrolled_count;
+    
+    unsigned long show_count;
+    bool need_show_count;
 
     char color;
 	
