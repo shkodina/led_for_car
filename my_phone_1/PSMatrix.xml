@@ -3,14 +3,14 @@
     <matrix_name>HC-05</matrix_name>
     <russian_letters_shift>848</russian_letters_shift>
     <strings>
-        <string number="0" color="R" hint="Привет" row="1"> Привет ;) </string>
-        <string number="1" color="G" hint="Пока" row="1"> Прощай :) </string>
-        <string number="2" color="B" hint="Гонка" row="1"> Погоняем? </string>
-        <string number="3" color="Y" hint="Менты" row="1"> Там патруль</string>
-        <string number="4" color="P" hint="Удачи" row="1"> Удачи! :) </string>
-        <string number="5" color="S" hint="Обгоняй" row="1"> Обгоняй...</string>
-        <string number="6" color="R" hint="Налево" row="1"> Налево еду</string>
-        <string number="7" color="G" hint="Направо" row="1"> Направо еду</string>
-        <string number="8" color="B" hint="Спать" row="1">Хочу спать.. </string>
+        <string number="0" color="R" hint="Hello0" row="1"> Hello R_0_</string>
+        <string number="1" color="G" hint="Hello1" row="1"> Hello G_1_</string>
+        <string number="2" color="B" hint="Hello2" row="1"> Hello B_2_</string>
+        <string number="3" color="Y" hint="Hello3" row="1"> Hello Y_3_</string>
+        <string number="4" color="P" hint="Hello4" row="1"> Hello P_4_</string>
+        <string number="5" color="S" hint="Hello5" row="1"> Hello S_5_</string>
+        <string number="6" color="R" hint="Hello6" row="1"> Hello R_6_</string>
+        <string number="7" color="G" hint="Hello7" row="1"> Hello G_7_</string>
+        <string number="8" color="B" hint="Hello8" row="1"> Hello B_8_</string>
     </strings>
 </config>

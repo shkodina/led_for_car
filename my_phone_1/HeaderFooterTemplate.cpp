@@ -430,13 +430,13 @@ void __fastcall THeaderFooterForm::BtClrR0PClick(TObject *Sender)
 
 void __fastcall THeaderFooterForm::BtClrR1SClick(TObject *Sender)
 {
-	send_command(SET_COLOR1, COLOR_G | COLOR_B);
+	send_command(SET_COLOR1, COLOR_R | COLOR_G | COLOR_B);
 }
 //---------------------------------------------------------------------------
 
 void __fastcall THeaderFooterForm::BtClrR0SClick(TObject *Sender)
 {
-	send_command(SET_COLOR0, COLOR_G | COLOR_B);
+	send_command(SET_COLOR0, COLOR_R | COLOR_G | COLOR_B);
 }
 //---------------------------------------------------------------------------
 
@@ -478,7 +478,7 @@ void __fastcall THeaderFooterForm::Button14Click(TObject *Sender)
 
 void __fastcall THeaderFooterForm::Button15Click(TObject *Sender)
 {
-    send_command(SHOW_MEMORED_STR, 5);
+	send_command(SHOW_MEMORED_STR, 5);
 }
 //---------------------------------------------------------------------------
 
@@ -580,6 +580,12 @@ void __fastcall THeaderFooterForm::Button21Click(TObject *Sender)
 		this->Memo1->Lines->Add("str[] = " + IntToStr(s));
 		;
 	} */
+}
+//---------------------------------------------------------------------------
+
+void __fastcall THeaderFooterForm::Button22Click(TObject *Sender)
+{
+    send_command(CHANGE_MAXI_FONT_MODE);
 }
 //---------------------------------------------------------------------------
 

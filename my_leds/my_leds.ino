@@ -13,7 +13,7 @@
 
 #define TIMER_INIT_VAL_US 300
 #define TIMER_PRINT_ROW_PERIOD 1
-#define TIMER_SHIFT_DEFAULT_PERIOD 105
+#define TIMER_SHIFT_DEFAULT_PERIOD 90
 #define TIMER_CMD_TIMEOUT 90
 #define SHOW_COUNT 3
 
@@ -59,18 +59,19 @@ void setup() {
   Serial1.begin(9600);
   Serial.begin(9600);
 
-  unsigned char str1[6] = {0xCF, 0xF0, 0xE8, 0xE2, 0xE5, 0xF2}; // Privet in russian
+//  unsigned char str1[14] = {0xCF, 0xCF, 0xF0, 0xF0, 0xE8, 0xE8, 0xE2, 0xE2, 0xE5, 0xE5, 0xF2, 0xF2, 0x20, 0x20}; // Privet in russian
+  unsigned char str1[2] = {0x20, 0x20}; // Privet in russian
   
-  strings[0].reset(str1, 6, COLOR_R);
-  strings[1].reset("абвгдежзиклмнопрстуфхцчшщъыьэюя", 31, COLOR_G);
+  strings[0].reset(str1, 2, COLOR_R);
+  strings[1].reset(str1, 2, COLOR_R);
 
   set_colors(strings[0].color, strings[1].color);
 
   matrix_rotate_fonts();
   matrix_clear();
 
-  strings[0].need_scroll = true;
-  strings[1].need_scroll = true;
+  strings[0].need_scroll = false;
+  strings[1].need_scroll = false;
 
   // rf24l01
   // Setup and configure rf radio
@@ -249,12 +250,24 @@ void serialEvent1() {
             strings[0].need_scroll = false;
             strings[0].next_sim_for_scroll_pos = 0;
             matrix_clear_row(0);
+
+            if (matrix_get_maxi_font_mode()){
+              strings[1].need_scroll = false;
+              strings[1].next_sim_for_scroll_pos = 0;
+              matrix_clear_row(1);
+            }
           break;
           
           case CLEAR1ROW:
             strings[1].need_scroll = false;
             strings[1].next_sim_for_scroll_pos = 0;
             matrix_clear_row(1);
+
+            if (matrix_get_maxi_font_mode()){
+              strings[0].need_scroll = false;
+              strings[0].next_sim_for_scroll_pos = 0;
+              matrix_clear_row(0);
+            }
           break;
     
           case SCROL_MATRIX:
@@ -266,21 +279,33 @@ void serialEvent1() {
           case SCROL0ROW_START:
             //Serial.print("scroll 0");
             strings[0].need_scroll = true;   
+            if (matrix_get_maxi_font_mode()){
+              strings[1].need_scroll = true;  
+            }
           break;
     
           case SCROL1ROW_START:
             //Serial.print("scroll 1");
             strings[1].need_scroll = true;  
+            if (matrix_get_maxi_font_mode()){
+              strings[0].need_scroll = true;  
+            }
           break;
     
           case SCROL0ROW_STOP:
             //Serial.print("scroll 0 stop");
             strings[0].need_scroll = false;   
+            if (matrix_get_maxi_font_mode()){
+              strings[1].need_scroll = false;  
+            }
           break;
     
           case SCROL1ROW_STOP:
             //Serial.print("scroll 1 stop");
             strings[1].need_scroll = false;  
+            if (matrix_get_maxi_font_mode()){
+              strings[0].need_scroll = false;  
+            }
           break;
   
           case SET_STR0:
@@ -316,6 +341,14 @@ void serialEvent1() {
           case SHOW_MEMORED_STR:
             command = SHOW_MEMORED_STR;
           break;
+
+          case CHANGE_MAXI_FONT_MODE:
+          {
+            bool cur_MF_mode = matrix_get_maxi_font_mode();
+            cur_MF_mode = !cur_MF_mode;
+            matrix_set_maxi_font_mode(cur_MF_mode);
+          }
+          break;
                
           default:
           ;
@@ -326,12 +359,22 @@ void serialEvent1() {
         case SET_STR0:
         case SET_STR1:
           if (sim != STR_STOP){
-            new_str[str_pos++] = sim;    
+            new_str[str_pos++] = sim;  
+            if (matrix_get_maxi_font_mode()){
+              new_str[str_pos++] = sim;  
+            }             
           }else{
             command = STUB;
-            strings[str_num].reset(new_str, str_pos, COLOR_R);
 
-            prepare_str(str_num);
+            if (matrix_get_maxi_font_mode()){
+              strings[0].reset(new_str, str_pos, COLOR_R);
+              strings[1].reset(new_str, str_pos, COLOR_R);
+              prepare_str(0);
+              prepare_str(1);  
+            }else{
+              strings[str_num].reset(new_str, str_pos, COLOR_R);
+              prepare_str(str_num);
+            }
             
             str_num = -1;  
             str_pos = 0;  
@@ -341,11 +384,16 @@ void serialEvent1() {
         case SET_COLOR0:
         case SET_COLOR1:
           command = STUB;
-          if (sim > 0 && (sim < (COLOR_R | COLOR_G | COLOR_B))){
+          if (sim > 0 && (sim <= (COLOR_R | COLOR_G | COLOR_B))){
             strings[str_num].color = sim;  
           }else{
             strings[str_num].color = COLOR_R;  
           }
+          
+          if (matrix_get_maxi_font_mode()){
+            strings[0].color = strings[1].color = strings[str_num].color;  
+          }
+
           set_colors(strings[0].color, strings[1].color);  
           str_num = -1;
         break; 
@@ -367,8 +415,25 @@ void serialEvent1() {
         case SHOW_MEMORED_STR:
           command = STUB;
           eeprom_str_get(&strings[0], sim);
-          prepare_str(0);
-          strings[0].need_show_count = true;
+          
+          if (matrix_get_maxi_font_mode()){
+            unsigned char nstr[MATRIX_STRING_MAX_LEN], nstrpos = 0;
+
+            for (unsigned char ii = 0; ii < strings[0].len; ii++){
+              nstr[nstrpos++] = strings[0].str[ii];  
+              nstr[nstrpos++] = strings[0].str[ii];  
+            }
+
+            strings[0].reset(nstr, nstrpos, strings[0].color);
+            strings[1].reset(nstr, nstrpos, strings[0].color);
+            prepare_str(0);
+            strings[0].need_show_count = true;
+            prepare_str(1);
+            strings[1].need_show_count = true;
+          }else{
+            prepare_str(0);
+            strings[0].need_show_count = true;
+          }
         break;
         
         

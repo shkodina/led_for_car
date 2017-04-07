@@ -2,10 +2,10 @@
 <BorlandProject>
 	<BT_BuildType>Debug</BT_BuildType>
 	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.657,C:\Users\Alex\Documents\Embarcadero\Studio\my_phone_1\HeaderFooterApplication.cbproj=C:\Users\Alex\Documents\Embarcadero\Studio\my_phone_1\PSMatrix.cbproj</Transaction>
     <Transaction>1899.12.30 00:00:00.000.909,=C:\Users\Alex\Documents\Embarcadero\Studio\my_phone_1\Untitled1.xml</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.680,C:\Users\Alex\Documents\Embarcadero\Studio\my_phone_1\Untitled1.xml=C:\Users\Alex\Documents\Embarcadero\Studio\my_phone_1\PSMatrix.xml</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.657,C:\Users\Alex\Documents\Embarcadero\Studio\my_phone_1\PSMatrix.cbproj=C:\Users\Alex\Documents\Embarcadero\Studio\my_phone_1\HeaderFooterApplication.cbproj</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.559,=C:\Users\Alex\Documents\Embarcadero\Studio\my_phone_1\my_cmd_prot.h</Transaction>
     <Transaction>1899.12.30 00:00:00.000.848,=C:\Users\Alex\Documents\Embarcadero\Studio\my_phone_1\matrix_defs.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.680,C:\Users\Alex\Documents\Embarcadero\Studio\my_phone_1\PSMatrix.xml=C:\Users\Alex\Documents\Embarcadero\Studio\my_phone_1\Untitled1.xml</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.559,=C:\Users\Alex\Documents\Embarcadero\Studio\my_phone_1\my_cmd_prot.h</Transaction>
   </Transactions>
 </BorlandProject>

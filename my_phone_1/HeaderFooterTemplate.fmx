@@ -177,7 +177,7 @@ object HeaderFooterForm: THeaderFooterForm
         object BtClrR1R: TButton
           Align = Left
           StyledSettings = [Family]
-          Size.Width = 60.000000000000000000
+          Size.Width = 51.000000000000000000
           Size.Height = 57.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
@@ -190,8 +190,8 @@ object HeaderFooterForm: THeaderFooterForm
         object BtClrR1G: TButton
           Align = Left
           StyledSettings = [Family]
-          Position.X = 60.000000000000000000
-          Size.Width = 60.000000000000000000
+          Position.X = 51.000000000000000000
+          Size.Width = 51.000000000000000000
           Size.Height = 57.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 1
@@ -204,8 +204,8 @@ object HeaderFooterForm: THeaderFooterForm
         object BtClrR1B: TButton
           Align = Left
           StyledSettings = [Family]
-          Position.X = 120.000000000000000000
-          Size.Width = 60.000000000000000000
+          Position.X = 102.000000000000000000
+          Size.Width = 51.000000000000000000
           Size.Height = 57.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 3
@@ -218,8 +218,8 @@ object HeaderFooterForm: THeaderFooterForm
         object BtClrR1Y: TButton
           Align = Left
           StyledSettings = [Family]
-          Position.X = 180.000000000000000000
-          Size.Width = 60.000000000000000000
+          Position.X = 153.000000000000000000
+          Size.Width = 51.000000000000000000
           Size.Height = 57.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 2
@@ -232,8 +232,8 @@ object HeaderFooterForm: THeaderFooterForm
         object BtCltR1P: TButton
           Align = Left
           StyledSettings = [Family]
-          Position.X = 240.000000000000000000
-          Size.Width = 60.000000000000000000
+          Position.X = 204.000000000000000000
+          Size.Width = 51.000000000000000000
           Size.Height = 57.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 4
@@ -246,15 +246,29 @@ object HeaderFooterForm: THeaderFooterForm
         object BtClrR1S: TButton
           Align = Left
           StyledSettings = [Family]
-          Position.X = 300.000000000000000000
-          Size.Width = 60.000000000000000000
+          Position.X = 255.000000000000000000
+          Size.Width = 51.000000000000000000
           Size.Height = 57.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 5
+          TabOrder = 6
           Text = 'S'
           TextSettings.Font.Size = 40.000000000000000000
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           TextSettings.FontColor = claAquamarine
+          OnClick = BtClrR1SClick
+        end
+        object BtClrR1W: TButton
+          Align = Left
+          StyledSettings = [Family]
+          Position.X = 306.000000000000000000
+          Size.Width = 51.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 5
+          Text = 'W'
+          TextSettings.Font.Size = 40.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claFloralwhite
           OnClick = BtClrR1SClick
         end
       end
@@ -268,7 +282,7 @@ object HeaderFooterForm: THeaderFooterForm
         object BtClrR0R: TButton
           Align = Left
           StyledSettings = [Family]
-          Size.Width = 60.000000000000000000
+          Size.Width = 51.000000000000000000
           Size.Height = 57.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
@@ -281,8 +295,8 @@ object HeaderFooterForm: THeaderFooterForm
         object BtClrR0G: TButton
           Align = Left
           StyledSettings = [Family]
-          Position.X = 60.000000000000000000
-          Size.Width = 60.000000000000000000
+          Position.X = 51.000000000000000000
+          Size.Width = 51.000000000000000000
           Size.Height = 57.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 1
@@ -295,8 +309,8 @@ object HeaderFooterForm: THeaderFooterForm
         object BtClrR0B: TButton
           Align = Left
           StyledSettings = [Family]
-          Position.X = 120.000000000000000000
-          Size.Width = 60.000000000000000000
+          Position.X = 102.000000000000000000
+          Size.Width = 51.000000000000000000
           Size.Height = 57.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 3
@@ -309,8 +323,8 @@ object HeaderFooterForm: THeaderFooterForm
         object BtClrR0Y: TButton
           Align = Left
           StyledSettings = [Family]
-          Position.X = 180.000000000000000000
-          Size.Width = 60.000000000000000000
+          Position.X = 153.000000000000000000
+          Size.Width = 51.000000000000000000
           Size.Height = 57.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 2
@@ -323,8 +337,8 @@ object HeaderFooterForm: THeaderFooterForm
         object BtClrR0P: TButton
           Align = Left
           StyledSettings = [Family]
-          Position.X = 240.000000000000000000
-          Size.Width = 60.000000000000000000
+          Position.X = 204.000000000000000000
+          Size.Width = 51.000000000000000000
           Size.Height = 57.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 4
@@ -337,15 +351,29 @@ object HeaderFooterForm: THeaderFooterForm
         object BtClrR0S: TButton
           Align = Left
           StyledSettings = [Family]
-          Position.X = 300.000000000000000000
-          Size.Width = 60.000000000000000000
+          Position.X = 255.000000000000000000
+          Size.Width = 51.000000000000000000
           Size.Height = 57.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 5
+          TabOrder = 6
           Text = 'S'
           TextSettings.Font.Size = 40.000000000000000000
           TextSettings.Font.StyleExt = {00070000000000000004000000}
           TextSettings.FontColor = claAquamarine
+          OnClick = BtClrR0SClick
+        end
+        object BtClrR0W: TButton
+          Align = Left
+          StyledSettings = [Family]
+          Position.X = 306.000000000000000000
+          Size.Width = 51.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 5
+          Text = 'W'
+          TextSettings.Font.Size = 40.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claFloralwhite
           OnClick = BtClrR0SClick
         end
       end
@@ -663,6 +691,17 @@ object HeaderFooterForm: THeaderFooterForm
           Size.PlatformDefault = False
           TabOrder = 1
           OnClick = Button21Click
+        end
+        object Button22: TButton
+          Align = Left
+          Position.X = 240.000000000000000000
+          Size.Width = 120.000000000000000000
+          Size.Height = 57.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = 'Change Font Mode'
+          TextSettings.WordWrap = True
+          OnClick = Button22Click
         end
       end
     end
