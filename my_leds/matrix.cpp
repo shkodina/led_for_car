@@ -10,7 +10,7 @@ unsigned char rmatrix [MATRIX_ROWS * MATRIX_COLOMS * MATRIX_BLOCK_SIZE * MATRIX_
 unsigned char rshift[MATRIX_ROWS];
 unsigned char rshifted_sim[MATRIX_ROWS];
 //============================================================================================
-bool is_maxi_mode = true;
+bool is_maxi_mode = false;
 void matrix_set_maxi_font_mode(bool mode_set){
   is_maxi_mode = mode_set;
 }

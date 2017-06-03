@@ -1,0 +1,8 @@
+/*
+
+50 (SPI MISO) --> MISO RF24
+51 (SPI MOSI) --> MOSI RF24
+52 (SPI SCK) --> SCK RF24
+7			 --> CS RF24
+6			 --> CE RF24
+*/

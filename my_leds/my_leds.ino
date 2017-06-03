@@ -164,6 +164,27 @@ void print_row_matrix(){
 */
 //============================================================================================
 //============================================================================================
+#define DATA_MARKER_MASK  0b10000001
+#define DATA_CRCBIT_MASK  0b00000010
+#define DATA_CRCBIT_SHIFT 1
+#define DATA_DATA_MASK    0b00111100
+#define DATA_DATA_SHIFT   2
+char try_get_data_from_pack(unsigned char data){
+  if (data & DATA_MARKER_MASK != DATA_MARKER_MASK){
+    Serial.println("no marker");
+    return -1;
+  }
+  
+  char payload = ((data & DATA_DATA_MASK) >> DATA_DATA_SHIFT);
+  if (((payload % 2) << DATA_CRCBIT_SHIFT) != (data & DATA_CRCBIT_MASK)){
+    Serial.print("wrong crc");
+    return -2;
+  }
+
+  return  payload;
+}
+//============================================================================================
+//============================================================================================
 void loop() {
 /*
   switch (led_state)
@@ -188,10 +209,33 @@ void loop() {
     Timer3.stop();
     byte sim = -1;
     radio.read( &sim, 1 ); 
-    Serial.print(sim, HEX);
-    sim %= 6;
-    eeprom_str_get(&strings[0], sim); 
-    prepare_str(0);
+    Serial.println(sim, HEX);
+
+    sim = try_get_data_from_pack(sim);
+
+    if (sim >= 0){
+      sim %= 6;
+      eeprom_str_get(&strings[0], sim); 
+      
+      if (matrix_get_maxi_font_mode()){
+        unsigned char nstr[MATRIX_STRING_MAX_LEN], nstrpos = 0;
+  
+        for (unsigned char ii = 0; ii < strings[0].len; ii++){
+          nstr[nstrpos++] = strings[0].str[ii];  
+          nstr[nstrpos++] = strings[0].str[ii];  
+        }
+  
+        strings[0].reset(nstr, nstrpos, strings[0].color);
+        strings[1].reset(nstr, nstrpos, strings[0].color);
+        prepare_str(0);
+        strings[0].need_show_count = true;
+        prepare_str(1);
+        strings[1].need_show_count = true;
+      }else{
+        prepare_str(0);
+        strings[0].need_show_count = true;
+      } 
+    }
     Timer3.start();
   }
   
